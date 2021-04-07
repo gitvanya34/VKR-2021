@@ -1,0 +1,20 @@
+D:\Projects_CSharp\Examples\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Release\WindowsFormsApplication317.exe.config
+D:\Projects_CSharp\Examples\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Release\heightmap.png
+D:\Projects_CSharp\Examples\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Release\WindowsFormsApplication317.exe
+D:\Projects_CSharp\Examples\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Release\WindowsFormsApplication317.pdb
+D:\Projects_CSharp\Examples\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.Form1.resources
+D:\Projects_CSharp\Examples\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.Properties.Resources.resources
+D:\Projects_CSharp\Examples\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.csproj.GenerateResource.Cache
+D:\Projects_CSharp\Examples\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.exe
+D:\Projects_CSharp\Examples\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.pdb
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Release\heightmap.png
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Release\WindowsFormsApplication317.exe.config
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Release\WindowsFormsApplication317.exe
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Release\WindowsFormsApplication317.pdb
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.csprojAssemblyReference.cache
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.Form1.resources
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.Properties.Resources.resources
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.csproj.GenerateResource.cache
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.csproj.CoreCompileInputs.cache
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.exe
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Release\WindowsFormsApplication317.pdb

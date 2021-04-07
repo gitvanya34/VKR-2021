@@ -1,0 +1,39 @@
+﻿<Window x:Class="L10.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:L10"
+        mc:Ignorable="d"
+        Title="WPF 3D Test" Height="450" Width="450">
+    <Grid Background="White" MouseWheel="Grid_MouseWheel"
+          MouseDown="Grid_MouseDown" MouseUp="Grid_MouseUp" MouseMove="Grid_MouseMove">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+      
+
+            <Viewport3D x:Name="viewport" Grid.Row="1">
+
+            <Viewport3D.Camera>
+                <PerspectiveCamera x:Name="camera" FarPlaneDistance="50"
+
+        NearPlaneDistance="0" LookDirection="0,0,-10" UpDirection="0,1,0"
+
+            Position="0,0,5" FieldOfView="45" />
+            </Viewport3D.Camera>
+            
+            <ModelVisual3D x:Name="model">
+                <ModelVisual3D.Content>
+                    <Model3DGroup x:Name="group">
+                        <AmbientLight Color="DarkGray" />
+                        <DirectionalLight Color="White" Direction="-10,3,0" />
+                    </Model3DGroup>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+            
+        </Viewport3D>
+    </Grid>
+</Window>

@@ -1,0 +1,29 @@
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\bin\Debug\STL Viewer.exe.config
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\bin\Debug\STL Viewer.exe
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\bin\Debug\STL Viewer.pdb
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\obj\Debug\STL-Viewer.csprojAssemblyReference.cache
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\obj\Debug\triangle_mesh_1.Form1.resources
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\obj\Debug\triangle_mesh_1.Properties.Resources.resources
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\obj\Debug\STL-Viewer.csproj.GenerateResource.cache
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\obj\Debug\STL-Viewer.csproj.CopyComplete
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\obj\Debug\STL Viewer.exe
+C:\Users\b92k\Documents\GitHub\STL-Viewer\triangle_mesh 1\obj\Debug\STL Viewer.pdb
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\bin\Debug\STL Viewer.exe.config
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\bin\Debug\STL Viewer.exe
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\bin\Debug\STL Viewer.pdb
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\obj\Debug\STL-Viewer.csproj.GenerateResource.cache
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\obj\Debug\STL-Viewer.csproj.CopyComplete
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\obj\Debug\STL Viewer.exe
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\obj\Debug\STL Viewer.pdb
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\obj\Debug\STLViewer.Properties.Resources.resources
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\obj\Debug\STLViewer.AppMainForm.resources
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\obj\Debug\STLViewer.AppAboutForm.resources
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\obj\Debug\STLViewer.AppHowToUseForm.resources
+C:\Users\b92k\Documents\GitHub\STL-Viewer\STL-Viewer\obj\Debug\STL-Viewer.csprojAssemblyReference.cache
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-master\STL-Viewer\obj\Debug\STL-Viewer.csprojAssemblyReference.cache
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-master\STL-Viewer\obj\Debug\STLViewer.AppAboutForm.resources
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-master\STL-Viewer\obj\Debug\STLViewer.AppHowToUseForm.resources
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-master\STL-Viewer\obj\Debug\STLViewer.AppMainForm.resources
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-master\STL-Viewer\obj\Debug\STLViewer.Properties.Resources.resources
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-master\STL-Viewer\obj\Debug\STL-Viewer.csproj.GenerateResource.cache
+D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-master\STL-Viewer\obj\Debug\STL-Viewer.csproj.CoreCompileInputs.cache

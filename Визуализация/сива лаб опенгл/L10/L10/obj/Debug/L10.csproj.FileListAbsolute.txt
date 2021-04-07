@@ -1,0 +1,44 @@
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\bin\Debug\L10.exe.config
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\bin\Debug\L10.exe
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\bin\Debug\L10.pdb
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\L10.csprojAssemblyReference.cache
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\MainWindow.g.cs
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\App.g.cs
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\L10_MarkupCompile.cache
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\L10_MarkupCompile.lref
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\MainWindow.baml
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\L10.g.resources
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\L10.Properties.Resources.resources
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\L10.csproj.GenerateResource.cache
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\L10.csproj.CoreCompileInputs.cache
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\L10.exe
+C:\Users\fw_sa\Downloads\визуальное\L10\L10\obj\Debug\L10.pdb
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\bin\Debug\L10.exe.config
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\L10.exe
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\L10.pdb
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\bin\Debug\L10.exe
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\bin\Debug\L10.pdb
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\L10.csprojResolveAssemblyReference.cache
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\MainWindow.g.cs
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\App.g.cs
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\L10_MarkupCompile.cache
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\L10_MarkupCompile.lref
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\MainWindow.baml
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\L10.g.resources
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\L10.Properties.Resources.resources
+\\10.10.4.50\StudentData\ПРИ\ПРИ-161\Чекунова Александра Андреевна\Визуальное прогр\L10\L10\obj\Debug\L10.csproj.GenerateResource.Cache
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\bin\Debug\L10.exe.config
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\bin\Debug\L10.exe
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\bin\Debug\L10.pdb
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\L10.csprojAssemblyReference.cache
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\MainWindow.g.cs
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\App.g.cs
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\L10_MarkupCompile.cache
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\L10_MarkupCompile.lref
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\MainWindow.baml
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\L10.g.resources
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\L10.Properties.Resources.resources
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\L10.csproj.GenerateResource.cache
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\L10.exe
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\L10.pdb
+D:\gomno\рабочий стол старая ос\учеба\5 семестр\вп\лаб10\L10\L10\obj\Debug\L10.csproj.CoreCompileInputs.cache
