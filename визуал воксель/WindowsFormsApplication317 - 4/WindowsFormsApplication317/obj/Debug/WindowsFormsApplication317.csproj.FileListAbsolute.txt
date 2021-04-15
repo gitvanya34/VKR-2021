@@ -51,3 +51,14 @@ D:\gomno\рабочий стол старая ос\учеба\8 семестр\�
 D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.csproj.CoreCompileInputs.cache
 D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.exe
 D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.pdb
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Debug\heightmap.png
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Debug\WindowsFormsApplication317.exe.config
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Debug\WindowsFormsApplication317.exe
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\bin\Debug\WindowsFormsApplication317.pdb
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.csprojAssemblyReference.cache
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.Form1.resources
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.Properties.Resources.resources
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.csproj.GenerateResource.cache
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.csproj.CoreCompileInputs.cache
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.exe
+D:\StudentData\VKR-2020\визуал воксель\WindowsFormsApplication317 - 4\WindowsFormsApplication317\obj\Debug\WindowsFormsApplication317.pdb

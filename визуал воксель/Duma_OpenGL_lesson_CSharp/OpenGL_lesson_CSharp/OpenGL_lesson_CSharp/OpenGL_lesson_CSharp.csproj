@@ -54,8 +54,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraVoxel.cs" />
     <Compile Include="SharpGLForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +66,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisualVoxel.cs" />
+    <Compile Include="VoxelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VoxelControl.Designer.cs">
+      <DependentUpon>VoxelControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,6 +85,9 @@
     </Compile>
     <EmbeddedResource Include="SharpGLForm.resx">
       <DependentUpon>SharpGLForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VoxelControl.resx">
+      <DependentUpon>VoxelControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />

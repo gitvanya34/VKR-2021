@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoRSaD", "CoRSaD\CoRSaD.csproj", "{5384174C-7DC7-49BE-9B14-530A4276AD69}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoxelLibrary", "..\VoxelLibrary\VoxelLibrary\VoxelLibrary.csproj", "{8473A145-AD17-4046-BF31-E6B98C356B76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5384174C-7DC7-49BE-9B14-530A4276AD69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5384174C-7DC7-49BE-9B14-530A4276AD69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5384174C-7DC7-49BE-9B14-530A4276AD69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5384174C-7DC7-49BE-9B14-530A4276AD69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8473A145-AD17-4046-BF31-E6B98C356B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8473A145-AD17-4046-BF31-E6B98C356B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8473A145-AD17-4046-BF31-E6B98C356B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8473A145-AD17-4046-BF31-E6B98C356B76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {612BBE34-1B6E-4367-A4F7-537AE3988B38}
+	EndGlobalSection
+EndGlobal

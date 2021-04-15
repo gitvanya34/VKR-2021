@@ -33,3 +33,16 @@ D:\gomno\рабочий стол старая ос\учеба\8 семестр\�
 D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STL-Viewer.csproj.CopyComplete
 D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STL Viewer.exe
 D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STL Viewer.pdb
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\bin\Debug\STL Viewer.exe.config
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\bin\Debug\STL Viewer.exe
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\bin\Debug\STL Viewer.pdb
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STL-Viewer.csprojAssemblyReference.cache
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STLViewer.AppAboutForm.resources
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STLViewer.AppHowToUseForm.resources
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STLViewer.AppMainForm.resources
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STLViewer.Properties.Resources.resources
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STL-Viewer.csproj.GenerateResource.cache
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STL-Viewer.csproj.CoreCompileInputs.cache
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STL-Viewer.csproj.CopyComplete
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STL Viewer.exe
+D:\StudentData\VKR-2020\Визуализация\STL-Viewer-develop\STL-Viewer\obj\Debug\STL Viewer.pdb

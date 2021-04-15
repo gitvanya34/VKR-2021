@@ -36,3 +36,24 @@ D:\gomno\рабочий стол старая ос\учеба\8 семестр\�
 D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.CopyComplete
 D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.exe
 D:\gomno\рабочий стол старая ос\учеба\8 семестр\Диплом\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.pdb
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.exe.config
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.exe
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.pdb
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\SharpGL.dll
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.dll
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.dll
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\SharpGL.pdb
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\SharpGL.xml
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.pdb
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.xml
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.pdb
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.xml
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csprojAssemblyReference.cache
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.Properties.Resources.resources
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.SharpGLForm.resources
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.GenerateResource.cache
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.CoreCompileInputs.cache
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.CopyComplete
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.exe
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.pdb
+D:\StudentData\VKR-2020\визуал воксель\Duma_OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.VoxelControl.resources

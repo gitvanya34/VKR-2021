@@ -1,0 +1,12 @@
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\obj\Debug\net5.0\VoxelLibrary.csprojAssemblyReference.cache
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\bin\Debug\net5.0\VoxelLibrary.deps.json
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\bin\Debug\net5.0\VoxelLibrary.dll
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\bin\Debug\net5.0\ref\VoxelLibrary.dll
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\bin\Debug\net5.0\VoxelLibrary.pdb
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\obj\Debug\net5.0\VoxelLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\obj\Debug\net5.0\VoxelLibrary.AssemblyInfoInputs.cache
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\obj\Debug\net5.0\VoxelLibrary.AssemblyInfo.cs
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\obj\Debug\net5.0\VoxelLibrary.csproj.CoreCompileInputs.cache
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\obj\Debug\net5.0\VoxelLibrary.dll
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\obj\Debug\net5.0\ref\VoxelLibrary.dll
+D:\StudentData\VKR-2020\CoRSaD\VoxelLibrary\VoxelLibrary\obj\Debug\net5.0\VoxelLibrary.pdb

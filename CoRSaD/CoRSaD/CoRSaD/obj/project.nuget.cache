@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "dgSpecHash": "CP+9WWVwcFzm+urcptfWGkM99czPJ+NSqi9/4KRoC5wa8jPOjKzPIsRVGN//j1PzvtVnmtDbRCVlYes9hpQC7g==",
+  "success": true,
+  "projectFilePath": "D:\\StudentData\\VKR-2020\\CoRSaD\\CoRSaD\\CoRSaD\\CoRSaD.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Ivan\\.nuget\\packages\\sharpgl\\3.1.1\\sharpgl.3.1.1.nupkg.sha512",
+    "C:\\Users\\Ivan\\.nuget\\packages\\sharpgl.scenegraph\\3.1.1\\sharpgl.scenegraph.3.1.1.nupkg.sha512",
+    "C:\\Users\\Ivan\\.nuget\\packages\\sharpgl.winforms\\3.1.1\\sharpgl.winforms.3.1.1.nupkg.sha512",
+    "C:\\Users\\Ivan\\.nuget\\packages\\sharpglcore\\2.3.0.1\\sharpglcore.2.3.0.1.nupkg.sha512",
+    "C:\\Users\\Ivan\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512",
+    "C:\\Users\\Ivan\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"SharpGLCore 2.3.0.1\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net5.0-windows7.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "SharpGLCore",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    }
+  ]
+}

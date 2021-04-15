@@ -28,43 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.openGLControl = new SharpGL.OpenGLControl();
-            ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
+            this.voxelControl1 = new OpenGL_lesson_CSharp.VoxelControl();
             this.SuspendLayout();
             // 
-            // openGLControl
+            // voxelControl1
             // 
-            this.openGLControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.openGLControl.DrawFPS = false;
-            this.openGLControl.FrameRate = 30;
-            this.openGLControl.Location = new System.Drawing.Point(0, 0);
-            this.openGLControl.Name = "openGLControl";
-            this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
-            this.openGLControl.RenderContextType = SharpGL.RenderContextType.FBO;
-            this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
-            this.openGLControl.Size = new System.Drawing.Size(659, 450);
-            this.openGLControl.TabIndex = 0;
-            this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
-            this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
-            this.openGLControl.Resized += new System.EventHandler(this.openGLControl_Resized);
-            this.openGLControl.Load += new System.EventHandler(this.openGLControl_Load);
+            this.voxelControl1.Location = new System.Drawing.Point(94, 66);
+            this.voxelControl1.Name = "voxelControl1";
+            this.voxelControl1.Size = new System.Drawing.Size(615, 508);
+            this.voxelControl1.TabIndex = 4;
             // 
             // SharpGLForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 450);
-            this.Controls.Add(this.openGLControl);
+            this.ClientSize = new System.Drawing.Size(1102, 692);
+            this.Controls.Add(this.voxelControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SharpGLForm";
             this.Text = "SharpGL Form";
-            ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private SharpGL.OpenGLControl openGLControl;
+        private VoxelControl voxelControl1;
     }
 }
 
