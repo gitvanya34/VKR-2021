@@ -16,7 +16,10 @@ namespace VoxelLibrary
         private int[] voxelY;
         private int[] voxelZ;
 
-        private int countVoxelXYZ;
+
+        private Voxel[] voxels;
+
+        private int countVoxel;
 
         private int[,] voxelXYZ;
 
@@ -30,37 +33,43 @@ namespace VoxelLibrary
         public void Visualization(OpenGL gl)
         {
 
-            for (int i = 0; i < voxelXYZ.Length / 3; i++)
+            for (int i = 0; i < countVoxel; i++)
             {
                 color.ColorStressVoxel(/*float valueStress*/ i/70);//разскоментить когда расчет сделаем
-                drawVoxel(gl, color, voxelXYZ[0, i], voxelXYZ[1, i], voxelXYZ[2, i]);
+                drawVoxel(gl, color, voxels[i]);
             }
         }
         //convert_Data_from_FileXYZ получает на вход необаботанную строку возвращает три масссива координат вокселей
         private void convert_Data_from_FileXYZ(string fileData)
         {
             string[] words = fileData.Split(' ');
-            int k = words.Length / 3;
+             this.countVoxel = words.Length / 3;
 
-            Console.WriteLine(k);
+            Console.WriteLine(countVoxel);
 
-            voxelXYZ = new int[3, k];
+            voxels = new  Voxel[countVoxel];
+            voxelXYZ = new int[3, countVoxel];
             //voxelX = new int[k];
             //voxelY = new int[k];
             //voxelZ = new int[k];
 
             int j = 0;
-            for (int i = 0; i < k; i += 2)
+            for (int i = 0; i < countVoxel; i += 1)
             {
-                voxelXYZ[0, j] = Convert.ToInt32(words[i]);
-                voxelXYZ[1, j] = Convert.ToInt32(words[i + 1]);
-                voxelXYZ[2, j] = Convert.ToInt32(words[i + 2]);
+
+                voxels[i] = new  Voxel(Convert.ToInt32(words[j]),
+                                       Convert.ToInt32(words[j + 1]),
+                                       Convert.ToInt32(words[j + 2]) );
+                //voxelXYZ[0, j] = Convert.ToInt32(words[i]);
+                //voxelXYZ[1, j] = Convert.ToInt32(words[i + 1]);
+                //voxelXYZ[2, j] = Convert.ToInt32(words[i + 2]);
+
                 //voxelX[j] = Convert.ToInt32(words[i + 0]);
                 //voxelY[j] = Convert.ToInt32(words[i + 1]);
                 //voxelZ[j] = Convert.ToInt32(words[i + 2]);
-                j++;
+                j+=3;
             }
-            Console.WriteLine(voxelXYZ);    
+          //  Console.WriteLine(voxelXYZ);    
         }
         private  void ImportXYZ()
         {
@@ -86,7 +95,7 @@ namespace VoxelLibrary
         }
 
         //рисуем воксель по точке(центр куба) обект gl ,входные ргб цвет, координаты центров 
-        private void drawVoxel(OpenGL gl, ColorVoxel color, float xc, float yc, float zc)
+        private void drawVoxel(OpenGL gl, ColorVoxel color, Voxel voxel /*float xc, float yc, float zc*/)
         {
             float sizeVoxel = 1;
             float hfs = sizeVoxel / 2;
@@ -94,7 +103,11 @@ namespace VoxelLibrary
             gl.Begin(OpenGL.GL_POLYGON);
             double i = 0;
             gl.Color(color.getRed(), color.getGreen(), color.getBlue());
-            
+
+            float xc = voxel.getVoxelX();
+            float yc=  voxel.getVoxelY();
+            float zc=  voxel.getVoxelZ();
+
             //верхняя грань
             gl.Vertex(xc - dsqrt, yc + hfs, zc - dsqrt);
             gl.Vertex(xc + dsqrt, yc + hfs, zc - dsqrt);

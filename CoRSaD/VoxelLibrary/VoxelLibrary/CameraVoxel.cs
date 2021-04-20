@@ -31,7 +31,7 @@ namespace VoxelLibrary
             cameraPositionY = 100;
             cameraPositionZ = 0;
 
-            cameraRouteVectorX = 1;
+            cameraRouteVectorX = 0;
             cameraRouteVectorY = 0;
             cameraRouteVectorZ = 0;
 
@@ -43,8 +43,14 @@ namespace VoxelLibrary
         {
             //  Данная функция позволяет установить камеру и её положение
             gl.LookAt(cameraPositionX, cameraPositionY, cameraPositionZ,    // Позиция самой камеры 5, 6, -7,0, 1, 0,    0, 1, 0);
-                       cameraRouteVectorX, cameraRouteVectorY, cameraRouteVectorZ,     // Направление, куда мы смотрим
-                       cameraUpVectorX, cameraUpVectorY, cameraUpVectorZ);    // Верх камеры  
+                       cameraPositionX, 0, cameraPositionZ,     // Направление, куда мы смотри // если поменять на cameraRouteVectorX = 0; cameraRouteVectorY = 0;cameraRouteVectorZ = 0;то будет всегда смотреть в нули 
+                         cameraUpVectorX, cameraUpVectorY, cameraUpVectorZ);    // Верх камеры  
+        }
+        public void Rotate(OpenGL gl) 
+        {
+            gl.Rotate(rotationX, 1.0f, 0.0f, 0.0f);
+            gl.Rotate(rotationY, 0.0f, 1.0f, 0.0f);
+            gl.Rotate(rotationZ, 0.0f, 0.0f, 1.0f);
         }
         public void UpCamera()
         {
@@ -75,7 +81,32 @@ namespace VoxelLibrary
         public void ForwardCamera()
         {
             cameraPositionY--;
+        }
 
+
+        public void RotateUpCameraX()
+        {
+            rotationX++;
+        }
+        public void RotateDownCameraX()
+        {
+            rotationX--;
+        }
+        public void RotateUpCameraY()
+        {
+            rotationY++;
+        }
+        public void RotateDownCameraY()
+        {
+            rotationY--;
+        }
+        public void RotateUpCameraZ()
+        {
+            rotationZ++;
+        }
+        public void RotateDownCameraZ()
+        {
+            rotationZ--;
         }
 
     }

@@ -38,7 +38,8 @@ namespace CoRSaD
             gl.LoadIdentity();
 
             //  Указываем оси вращения (x, y, z)
-            gl.Rotate(rotation, 1.0f, 0.0f, 0.0f);
+            //gl.Rotate(rotation, 0.0f, 0.0f, 1.0f);
+            cameraVoxel.Rotate(gl);
 
             visualVoxel.Visualization(gl);
             // rotation += 1.5f;
@@ -57,36 +58,7 @@ namespace CoRSaD
             gl.ClearColor(0.1f, 0.5f, 1.0f, 0);
         }
 
-        private void openglControl1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.A)
-            {
-                cameraVoxel.LeftCamera();
-            }
-
-            if (e.KeyCode == Keys.D)
-            {
-                cameraVoxel.RightCamera();
-            }
-
-            if (e.KeyCode == Keys.W)
-            {
-                cameraVoxel.ForwardCamera();
-            }
-
-            if (e.KeyCode == Keys.S)
-            {
-                cameraVoxel.BackCamera();
-            }
-            if (e.KeyCode == Keys.R)
-            {
-                cameraVoxel.UpCamera();
-            }
-            if (e.KeyCode == Keys.F)
-            {
-                cameraVoxel.DownCamera();
-            }
-        }
+       
         private void Look()
         {
             //  Возьмём OpenGL объект
@@ -110,6 +82,81 @@ namespace CoRSaD
         private void openglControl1_Resized(object sender, EventArgs e)
         {
             Look();
+        }
+
+        private void openglControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.A && e.Control)
+            {
+                cameraVoxel.RotateUpCameraZ();
+                return;
+            }
+
+
+            if (e.KeyCode == Keys.D && e.Control)
+            {
+                cameraVoxel.RotateDownCameraZ();
+                return;
+            }
+
+            if (e.KeyCode == Keys.W && e.Control)
+            {
+                cameraVoxel.RotateUpCameraY();
+                return;
+            }
+
+            if (e.KeyCode == Keys.S && e.Control)
+            {
+                cameraVoxel.RotateDownCameraY();
+                return;
+            }
+            if (e.KeyCode == Keys.R && e.Control)
+            {
+                cameraVoxel.RotateUpCameraX();
+                return;
+            }
+            if (e.KeyCode == Keys.F && e.Control)
+            {
+                cameraVoxel.RotateDownCameraX();
+                return;
+            }
+
+            if (e.KeyCode == Keys.A)
+            {
+                cameraVoxel.LeftCamera();
+                return;
+            }
+
+            if (e.KeyCode == Keys.D)
+            {
+                cameraVoxel.RightCamera();
+                return;
+            }
+
+            if (e.KeyCode == Keys.W)
+            {
+                cameraVoxel.ForwardCamera();
+                return;
+            }
+
+            if (e.KeyCode == Keys.S)
+            {
+                cameraVoxel.BackCamera();
+                return;
+            }
+            if (e.KeyCode == Keys.R)
+            {
+                cameraVoxel.UpCamera();
+                return;
+            }
+            if (e.KeyCode == Keys.F)
+            {
+                cameraVoxel.DownCamera();
+                return;
+            }
+
+
         }
     }
 }
