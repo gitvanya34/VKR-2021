@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharpGL;
 using VoxelLibrary;
+using VisualVoxelLibrary;
 namespace CoRSaD
 {
     public partial class Form1 : Form
     {
-        VoxelLibrary.VisualVoxel visualVoxel = new VisualVoxel();
-        VoxelLibrary.CameraVoxel cameraVoxel = new CameraVoxel();
+        VisualVoxelLibrary.VisualVoxel visualVoxel = new VisualVoxel();
+        VisualVoxelLibrary.CameraVoxel cameraVoxel = new CameraVoxel();
         float rotation = 0.0f;
         public Form1()
         {

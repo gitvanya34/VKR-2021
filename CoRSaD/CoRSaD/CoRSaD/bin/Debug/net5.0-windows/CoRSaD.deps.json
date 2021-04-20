@@ -8,9 +8,10 @@
     ".NETCoreApp,Version=v5.0": {
       "CoRSaD/1.0.0": {
         "dependencies": {
+          "CalculationStressLibrary": "1.0.0",
           "SharpGL.WinForms": "3.1.1",
           "SharpGLCore": "2.3.0.1",
-          "VoxelLibrary": "1.0.0"
+          "VisualVoxelLibrary": "1.0.0"
         },
         "runtime": {
           "CoRSaD.dll": {}
@@ -63,6 +64,23 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
           "Microsoft.Win32.SystemEvents": "4.7.0"
+        }
+      },
+      "CalculationStressLibrary/1.0.0": {
+        "dependencies": {
+          "VoxelLibrary": "1.0.0"
+        },
+        "runtime": {
+          "CalculationStressLibrary.dll": {}
+        }
+      },
+      "VisualVoxelLibrary/1.0.0": {
+        "dependencies": {
+          "SharpGL": "3.1.1",
+          "VoxelLibrary": "1.0.0"
+        },
+        "runtime": {
+          "VisualVoxelLibrary.dll": {}
         }
       },
       "VoxelLibrary/1.0.0": {
@@ -143,6 +161,16 @@
       "sha512": "sha512-v+XbyYHaZjDfn0ENmJEV1VYLgGgCTx1gnfOBcppowbpOAriglYgGCvFCPr2EEZyBvXlpxbEsTwkOlInl107ahA==",
       "path": "system.drawing.common/4.7.0",
       "hashPath": "system.drawing.common.4.7.0.nupkg.sha512"
+    },
+    "CalculationStressLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VisualVoxelLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "VoxelLibrary/1.0.0": {
       "type": "project",

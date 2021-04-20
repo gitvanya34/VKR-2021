@@ -36,7 +36,7 @@ namespace CoRSaD
             // openglControl1
             // 
             this.openglControl1.DrawFPS = false;
-            this.openglControl1.Location = new System.Drawing.Point(54, 37);
+            this.openglControl1.Location = new System.Drawing.Point(25, 33);
             this.openglControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.openglControl1.Name = "openglControl1";
             this.openglControl1.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;

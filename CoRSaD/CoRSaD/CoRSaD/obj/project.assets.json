@@ -133,6 +133,33 @@
           }
         }
       },
+      "CalculationStressLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "VoxelLibrary": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CalculationStressLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CalculationStressLibrary.dll": {}
+        }
+      },
+      "VisualVoxelLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "SharpGL": "3.1.1",
+          "VoxelLibrary": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/VisualVoxelLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VisualVoxelLibrary.dll": {}
+        }
+      },
       "VoxelLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -418,6 +445,16 @@
         "version.txt"
       ]
     },
+    "CalculationStressLibrary/1.0.0": {
+      "type": "project",
+      "path": "../../CalculationStressLibrary/CalculationStressLibrary/CalculationStressLibrary.csproj",
+      "msbuildProject": "../../CalculationStressLibrary/CalculationStressLibrary/CalculationStressLibrary.csproj"
+    },
+    "VisualVoxelLibrary/1.0.0": {
+      "type": "project",
+      "path": "../../VisualVoxelLibrary/VisualVoxelLibrary/VisualVoxelLibrary.csproj",
+      "msbuildProject": "../../VisualVoxelLibrary/VisualVoxelLibrary/VisualVoxelLibrary.csproj"
+    },
     "VoxelLibrary/1.0.0": {
       "type": "project",
       "path": "../../VoxelLibrary/VoxelLibrary/VoxelLibrary.csproj",
@@ -426,9 +463,10 @@
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
+      "CalculationStressLibrary >= 1.0.0",
       "SharpGL.WinForms >= 3.1.1",
       "SharpGLCore >= 2.3.0.1",
-      "VoxelLibrary >= 1.0.0"
+      "VisualVoxelLibrary >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -458,8 +496,11 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "D:\\StudentData\\VKR-2020\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj": {
-              "projectPath": "D:\\StudentData\\VKR-2020\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj"
+            "D:\\StudentData\\VKR-2020\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj": {
+              "projectPath": "D:\\StudentData\\VKR-2020\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj"
+            },
+            "D:\\StudentData\\VKR-2020\\CoRSaD\\VisualVoxelLibrary\\VisualVoxelLibrary\\VisualVoxelLibrary.csproj": {
+              "projectPath": "D:\\StudentData\\VKR-2020\\CoRSaD\\VisualVoxelLibrary\\VisualVoxelLibrary\\VisualVoxelLibrary.csproj"
             }
           }
         }

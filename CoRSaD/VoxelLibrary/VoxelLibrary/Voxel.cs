@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace VoxelLibrary
 {
   
-    class Voxel
+    public class Voxel
     {
         private int voxelX;
         private int voxelY;

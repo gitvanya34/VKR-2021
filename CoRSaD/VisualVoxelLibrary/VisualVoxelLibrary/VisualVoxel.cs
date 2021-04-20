@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using VoxelLibrary;
 
-namespace VoxelLibrary
+namespace VisualVoxelLibrary
 {
     
 
@@ -25,19 +26,25 @@ namespace VoxelLibrary
 
         private ColorVoxel color = new ColorVoxel(100,900);
 
+
         public VisualVoxel(OpenGL Gl)
         {gl = Gl; }
         public VisualVoxel()
         { ImportXYZ(); }
 
+
+
         public void Visualization(OpenGL gl)
         {
-
+            //Вывод изображения воксельной модели без стресса (начальный вывод)
             for (int i = 0; i < countVoxel; i++)
             {
                 color.ColorStressVoxel(/*float valueStress*/ i/70);//разскоментить когда расчет сделаем
                 drawVoxel(gl, color, voxels[i]);
             }
+
+            //вывод в отдельное окно расчитаной модели (возможно понадобится перегрузить функцию и вызывать ее из другого окна опенgl)
+            
         }
         //convert_Data_from_FileXYZ получает на вход необаботанную строку возвращает три масссива координат вокселей
         private void convert_Data_from_FileXYZ(string fileData)
