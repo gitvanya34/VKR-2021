@@ -13,20 +13,80 @@ namespace CalculationStressLibrary
 
         private int minZ;
         private int maxZ;
-
-        private VoxelLibrary.Voxel [] voxels;//на выходе здесь должны лежать воксели по порядку изготовления (Зависит от типа сканироваиня, использовать будем змейку)
+        private MeshVoxel[,,] allMeshVoxels;//все воксели в сетке включая те которые не участвуют в проприсовке(Пустые воксели)
+        private VoxelLibrary.Voxel[] voxels;//на выходе здесь должны лежать воксели по порядку изготовления (Зависит от типа сканироваиня, использовать будем змейку)
 
         /*пробуем сделать трехмерной массив всего пространства печати, 
         а затем отделить воксели которые должны печаться и которые остаются пустые
         в данный момент нужно решить вопрос о том на каком уровне будет строиться сетка расчетов*/
 
-        private bool boolScanned; //отсканированны воксели True если воксель должен печаться, по умолчанию FAlse
-        private bool boolScannedCount;// true Вкосели которые отсканированные на данный момент расчета
+       
 
-        public ScanningModel( Voxel[] voxels)
-        {      
+        /*На вход контруктор получает полный массив вокселей которые в будущем отсортируются по порядку прорисовки
+        (или как вариант устроить проверку в самой сетке, есть ли желаемый для прорисовки воксель, если есть то отрисовать/расчтитать напругу)*/
+        public ScanningModel(Voxel[] voxels)
+        {
             this.voxels = voxels;
+
+            Meshing();
         }
+
+        public MeshVoxel[,,] getAllMeshVoxels()
+        { return allMeshVoxels; }
+        
+        /*Построение сетки*/
+        public void Meshing()
+        {
+            FindMeshBorder();
+            //заполнение сетки
+            //int number_of_voxels_in_mesh = maxX * maxY * maxZ;
+            allMeshVoxels = new MeshVoxel[maxX + 1, maxY + 1, maxZ + 1];
+            for (int z = minZ; z <= maxZ; z++)
+            {
+                for (int x = minX; x <= maxX; x++)
+                {
+                    for (int y = minY; y <= maxY; y++)
+                    {
+                        allMeshVoxels[x, y, z] = new MeshVoxel(x, y, z);
+                    }
+                }
+            }
+
+            CheckVoxelInModel();
+        }
+
         /*TODO Найти максмумы и минимумы пространства вызов должен быть из visuallibrary*/
+        /*Находим границы сетки из объекта класса используется внутри класса*/
+        public void FindMeshBorder()
+        {
+            minX = 0; maxX = 0; minY = 0; maxY = 0; minZ = 0; maxZ = 0;
+
+            foreach (Voxel voxel in voxels)
+            {
+                minX = voxel.getVoxelX() < minX ? voxel.getVoxelX() : minX;
+                minY = voxel.getVoxelY() < minY ? voxel.getVoxelY() : minY;
+                minZ = voxel.getVoxelZ() < minZ ? voxel.getVoxelZ() : minZ;
+
+                maxX = voxel.getVoxelX() > maxX ? voxel.getVoxelX() : maxX;
+                maxY = voxel.getVoxelY() > maxY ? voxel.getVoxelY() : maxY;
+                maxZ = voxel.getVoxelZ() > maxZ ? voxel.getVoxelZ() : maxZ;
+
+            }
+            Console.WriteLine("%d %d ", maxX, minX);
+            Console.WriteLine("%d %d ", maxY, minY);
+            Console.WriteLine("%d %d ", maxZ, minZ);
+
+        }
+
+        //проверка какие воксели являются частью модели, установка буллов для мешВоксель
+        public void CheckVoxelInModel()
+        {
+            foreach(Voxel voxel in voxels)
+            {
+                allMeshVoxels[voxel.getVoxelX(),
+                              voxel.getVoxelY(),
+                              voxel.getVoxelZ()].setBoolScanned(true);
+            }    
+        }
     }
 }

@@ -76,6 +76,7 @@
       },
       "VisualVoxelLibrary/1.0.0": {
         "dependencies": {
+          "CalculationStressLibrary": "1.0.0",
           "SharpGL": "3.1.1",
           "VoxelLibrary": "1.0.0"
         },
