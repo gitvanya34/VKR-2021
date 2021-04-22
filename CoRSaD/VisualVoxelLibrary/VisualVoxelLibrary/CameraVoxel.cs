@@ -27,9 +27,9 @@ namespace VisualVoxelLibrary
 
         public CameraVoxel()
         {
-            cameraPositionX = 0;
-            cameraPositionY = 100;
-            cameraPositionZ = 0;
+            cameraPositionX = 50;
+            cameraPositionY = 75;
+            cameraPositionZ = 50;
 
             cameraRouteVectorX = 0;
             cameraRouteVectorY = 0;
@@ -38,7 +38,11 @@ namespace VisualVoxelLibrary
             cameraUpVectorX = 0;
             cameraUpVectorY = 0;
             cameraUpVectorZ = 1;
-        }
+
+            rotationX=90;
+            rotationY=0;
+            rotationZ=0;
+         }
         public void  CameraLookAt(OpenGL gl) 
         {
             //  Данная функция позволяет установить камеру и её положение

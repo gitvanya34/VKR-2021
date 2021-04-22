@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using VoxelLibrary;
 using CalculationStressLibrary;
-
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace VisualVoxelLibrary
 {
@@ -53,6 +55,58 @@ namespace VisualVoxelLibrary
                 color.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
                 drawVoxel(gl, color, meshVoxel);
             }
+        }
+
+
+        System.Diagnostics.Stopwatch sw = new Stopwatch();
+        int maxX = 1;
+        int maxY =1;
+        int maxZ = 2;
+        
+        public async void VisualizationModelScanning(OpenGL gl)
+        {
+            
+            //вывод в отдельное окно расчитаной модели (возможно понадобится перегрузить функцию и вызывать ее из другого окна опенgl)
+            //....
+            CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
+                                                                                             //foreach (MeshVoxel meshVoxel in scanningModel.getAllMeshVoxels())
+                                                                                             //{
+                                                                                             //    color.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
+                                                                                             //    drawVoxel(gl, color, meshVoxel); //}
+            await Task.Run(() =>
+            {
+                if (/*пауза*/true)
+                {
+                    maxX++;
+                    if (maxX == scanningModel.getMaxX())
+                    {
+                        maxX = 2;
+                        maxY+=10;
+                    }
+                    if (maxY == scanningModel.getMaxY())
+                    {
+                        maxY = 2;
+                        maxZ+=10;
+                    }
+                }
+                //Thread.Sleep(1);
+            });
+
+
+           
+            MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
+            for (int z = scanningModel.getMinZ(); z <= maxZ; z++)
+            {      
+                for (int y = scanningModel.getMinY(); y <= maxY; y++)
+                {
+                    for (int x = scanningModel.getMinX(); x <= maxX; x++)
+                    {
+                        color.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
+                        drawVoxel(gl, color, meshVoxels[x,y,z]);
+                    }
+                }
+            }
+           // Thread.Sleep(1);
         }
         //convert_Data_from_FileXYZ получает на вход необаботанную строку возвращает три масссива координат вокселей
         private void convert_Data_from_FileXYZ(string fileData)
@@ -169,10 +223,11 @@ namespace VisualVoxelLibrary
             if (voxel.getBoolScanned())
             {
 
-
+                
                 float sizeVoxel = 1;
                 float hfs = sizeVoxel / 2;
                 float dsqrt = (float)Math.Sqrt(hfs * hfs);
+                //рисование полигонов
                 gl.Begin(OpenGL.GL_POLYGON);
                 gl.Color(color.getRed(), color.getGreen(), color.getBlue());
 
@@ -220,6 +275,61 @@ namespace VisualVoxelLibrary
                 gl.Vertex(xc - dsqrt, yc + dsqrt, zc - hfs);
 
                 gl.End();
+
+                //рисование контуров
+
+                gl.Begin(OpenGL.GL_LINE_STRIP);
+                gl.Color(0, 0, 0);
+                // glLineWidth(w);
+                // glColor3d(0, 1, 0);
+                // glBegin(GL_LINE_STRIP);
+                //верхняя грань
+                gl.Vertex(xc - dsqrt, yc + hfs, zc - dsqrt);
+                gl.Vertex(xc + dsqrt, yc + hfs, zc - dsqrt);
+
+                gl.Vertex(xc + dsqrt, yc + hfs, zc + dsqrt);
+                gl.Vertex(xc - dsqrt, yc + hfs, zc + dsqrt);
+
+
+                //нижняя грань
+                gl.Vertex(xc - dsqrt, yc - hfs, zc - dsqrt);
+                gl.Vertex(xc + dsqrt, yc - hfs, zc - dsqrt);
+
+                gl.Vertex(xc + dsqrt, yc - hfs, zc + dsqrt);
+                gl.Vertex(xc - dsqrt, yc - hfs, zc + dsqrt);
+
+
+                //левая грань
+                gl.Vertex(xc - hfs, yc - dsqrt, zc - dsqrt);
+                gl.Vertex(xc - hfs, yc + dsqrt, zc - dsqrt);
+
+                gl.Vertex(xc - hfs, yc + dsqrt, zc + dsqrt);
+                gl.Vertex(xc - hfs, yc - dsqrt, zc + dsqrt);
+
+
+                //правая грань
+                gl.Vertex(xc + hfs, yc - dsqrt, zc - dsqrt);
+                gl.Vertex(xc + hfs, yc + dsqrt, zc - dsqrt);
+
+                gl.Vertex(xc + hfs, yc + dsqrt, zc + dsqrt);
+                gl.Vertex(xc + hfs, yc - dsqrt, zc + dsqrt);
+
+                //передняя грань
+                gl.Vertex(xc - dsqrt, yc - dsqrt, zc + hfs);
+                gl.Vertex(xc + dsqrt, yc - dsqrt, zc + hfs);
+
+                gl.Vertex(xc + dsqrt, yc + dsqrt, zc + hfs);
+                gl.Vertex(xc - dsqrt, yc + dsqrt, zc + hfs);
+
+                //задняя грань
+                gl.Vertex(xc - dsqrt, yc - dsqrt, zc - hfs);
+                gl.Vertex(xc + dsqrt, yc - dsqrt, zc - hfs);
+
+                gl.Vertex(xc + dsqrt, yc + dsqrt, zc - hfs);
+                gl.Vertex(xc - dsqrt, yc + dsqrt, zc - hfs);
+
+                gl.End();
+              
             }
         }
     }

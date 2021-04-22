@@ -31,9 +31,27 @@ namespace CalculationStressLibrary
             Meshing();
         }
 
+
         public MeshVoxel[,,] getAllMeshVoxels()
         { return allMeshVoxels; }
-        
+
+        public int getMaxX()
+        { return maxX; }
+
+        public int getMaxY()
+        { return maxY; }
+
+        public int getMaxZ()
+        { return maxZ; }
+
+        public int getMinX()
+        { return minY; }
+        public int getMinY()
+        { return minY; }
+        public int getMinZ()
+        { return minZ; }
+       
+
         /*Построение сетки*/
         public void Meshing()
         {
@@ -87,6 +105,21 @@ namespace CalculationStressLibrary
                               voxel.getVoxelY(),
                               voxel.getVoxelZ()].setBoolScanned(true);
             }    
+        }
+
+        //сканирование змейкой метод для моделирования псолойного изготовления (можно потом сделать еще методом шазматной доски)
+        public void SnakeScanning()
+        {
+            for (int z = minZ; z <= maxZ; z++)
+            {
+                for (int x = minX; x <= maxX; x++)
+                {
+                    for (int y = minY; y <= maxY; y++)
+                    {
+                        allMeshVoxels[x, y, z] = new MeshVoxel(x, y, z);
+                    }
+                }
+            }         
         }
     }
 }
