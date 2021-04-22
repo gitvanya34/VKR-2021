@@ -42,7 +42,8 @@ namespace CoRSaD
             //gl.Rotate(rotation, 0.0f, 0.0f, 1.0f);
             cameraVoxel.Rotate(gl);
 
-            visualVoxel.Visualization(gl);
+            //visualVoxel.Visualization(gl);
+            visualVoxel.VisualizationModelScanning(gl);
             // rotation += 1.5f;
             Look();
         }
@@ -60,6 +61,11 @@ namespace CoRSaD
         }
 
        
+        private void openglControl1_Resized(object sender, EventArgs e)
+        {
+            Look();
+        }
+
         private void Look()
         {
             //  Возьмём OpenGL объект
@@ -71,7 +77,7 @@ namespace CoRSaD
             gl.LoadIdentity();
 
             //  Преобразование
-            gl.Perspective(100.0f, (double)Width / (double)Height, 0.01, 100.0);
+            gl.Perspective(75.0f, (double)Width / (double)Height, 0.01, 100.0);
 
 
             ////
@@ -80,11 +86,6 @@ namespace CoRSaD
             //  Зададим модель отображения
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
-        private void openglControl1_Resized(object sender, EventArgs e)
-        {
-            Look();
-        }
-
         private void openglControl1_KeyDown(object sender, KeyEventArgs e)
         {
 
