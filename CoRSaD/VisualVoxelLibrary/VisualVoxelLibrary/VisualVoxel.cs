@@ -78,15 +78,16 @@ namespace VisualVoxelLibrary
                 if (/*пауза*/true)
                 {
                     maxX++;
-                    if (maxX == scanningModel.getMaxX())
-                    {
-                        maxX = 2;
-                        maxY+=10;
-                    }
-                    if (maxY == scanningModel.getMaxY())
+                   
+                    if (maxY >= scanningModel.getMaxY())
                     {
                         maxY = 2;
-                        maxZ+=10;
+                        maxZ+=1;
+                    }
+                    if (maxX >= scanningModel.getMaxX())
+                    {
+                        maxX = 2;
+                        maxY += 30;
                     }
                 }
                 //Thread.Sleep(1);
@@ -96,11 +97,12 @@ namespace VisualVoxelLibrary
            
             MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
             for (int z = scanningModel.getMinZ(); z <= maxZ; z++)
-            {      
-                for (int y = scanningModel.getMinY(); y <= maxY; y++)
+            {
+                for (int x = scanningModel.getMinX(); x <= maxX; x++)
                 {
-                    for (int x = scanningModel.getMinX(); x <= maxX; x++)
-                    {
+                    for (int y = scanningModel.getMinY(); y <= maxY; y++)
+                {
+                   
                         color.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
                         drawVoxel(gl, color, meshVoxels[x,y,z]);
                     }
@@ -143,7 +145,7 @@ namespace VisualVoxelLibrary
         private  void ImportXYZ()
         {
             string path = @"D:\\StudentData\\VKR-2021\\Вокселизация змеюка\\voxel pyton";//заменить на патч 
-            StreamReader sr = new StreamReader($"{path}\\output.xyz");
+            StreamReader sr = new StreamReader($"{path}\\cubevoxel.xyz");
             string numbers = sr.ReadToEnd();      
             numbers = numbers.Replace("\r", "").Replace("\n", " ");
             convert_Data_from_FileXYZ(numbers);
@@ -223,12 +225,11 @@ namespace VisualVoxelLibrary
             if (voxel.getBoolScanned())
             {
 
-                
                 float sizeVoxel = 1;
                 float hfs = sizeVoxel / 2;
                 float dsqrt = (float)Math.Sqrt(hfs * hfs);
                 //рисование полигонов
-                gl.Begin(OpenGL.GL_POLYGON);
+                gl.Begin(OpenGL.GL_QUADS);
                 gl.Color(color.getRed(), color.getGreen(), color.getBlue());
 
                 float xc = voxel.getVoxelX();
@@ -275,7 +276,7 @@ namespace VisualVoxelLibrary
                 gl.Vertex(xc - dsqrt, yc + dsqrt, zc - hfs);
 
                 gl.End();
-
+                //gl.Flush();
                 //рисование контуров
 
                 gl.Begin(OpenGL.GL_LINE_STRIP);
@@ -329,7 +330,7 @@ namespace VisualVoxelLibrary
                 gl.Vertex(xc - dsqrt, yc + dsqrt, zc - hfs);
 
                 gl.End();
-              
+                gl.Finish();
             }
         }
     }

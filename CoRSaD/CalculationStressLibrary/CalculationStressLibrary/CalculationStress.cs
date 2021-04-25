@@ -8,5 +8,6 @@ namespace CalculationStressLibrary
 {
     class CalculationStress
     {
+
     }
 }
