@@ -31,7 +31,7 @@ namespace VoxelLibrary
 
             //TODO расчет градиента по максимальному и минимальному значению напряжения 
         }
-        public void ColorStressVoxel(float valueStress)
+        public void ColorStressVoxel(double valueStress)
         {
             double k= valueStress * stepColor;
             //TODO расчет граддиента и цветов; на вхоод приходит номер вокселя и его значения напрядения ,

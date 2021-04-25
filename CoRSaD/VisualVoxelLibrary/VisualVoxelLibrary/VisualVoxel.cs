@@ -28,7 +28,7 @@ namespace VisualVoxelLibrary
 
         private int[,] voxelXYZ;
 
-        private ColorVoxel color = new ColorVoxel(100,900);//ввод в параметр максимального и минимлаьного стресса ,хотя у меня он максимальный 
+        private ColorVoxel color = new ColorVoxel(0,10000);//ввод в параметр максимального и минимлаьного стресса ,хотя у меня он максимальный 
 
 
         public VisualVoxel(OpenGL Gl)
@@ -49,6 +49,8 @@ namespace VisualVoxelLibrary
 
             //вывод в отдельное окно расчитаной модели (возможно понадобится перегрузить функцию и вызывать ее из другого окна опенgl)
             //....
+           
+
             CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
             foreach(MeshVoxel meshVoxel in scanningModel.getAllMeshVoxels())
             {
@@ -58,11 +60,34 @@ namespace VisualVoxelLibrary
         }
 
 
+        double t = 0;
+        public void VisualizationTemperatyre(OpenGL gl)
+        {
+
+            t += 0.0001;
+            double temperature = 0;
+            CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
+            MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
+            for (int z = scanningModel.getMinZ(); z <= scanningModel.getMaxZ(); z++)
+            {
+                for (int x = scanningModel.getMinX(); x <= scanningModel.getMaxX(); x++)
+                {
+                    for (int y = scanningModel.getMinY(); y <= scanningModel.getMaxY(); y++)
+                    {
+                       
+                        temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
+                        Console.WriteLine("%d,%d,%d", x, y, z, temperature);
+                        color.ColorStressVoxel(temperature*10000);//разскоментить когда расчет сделаем
+                        drawVoxel(gl, color, meshVoxels[x, y, z]);
+                    }
+                }
+            }
+        }
+
         System.Diagnostics.Stopwatch sw = new Stopwatch();
         int maxX = 1;
         int maxY =1;
-        int maxZ = 2;
-        
+        int maxZ = 1;
         public async void VisualizationModelScanning(OpenGL gl)
         {
             
@@ -72,27 +97,27 @@ namespace VisualVoxelLibrary
                                                                                              //foreach (MeshVoxel meshVoxel in scanningModel.getAllMeshVoxels())
                                                                                              //{
                                                                                              //    color.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
-                                                                                             //    drawVoxel(gl, color, meshVoxel); //}
-            await Task.Run(() =>
-            {
-                if (/*пауза*/true)
+            if (maxZ< scanningModel.getMaxZ()) {                                                                                //    drawVoxel(gl, color, meshVoxel); //}
+                await Task.Run(() =>
                 {
-                    maxX++;
-                   
-                    if (maxY >= scanningModel.getMaxY())
+                    if (/*пауза*/true)
                     {
-                        maxY = 2;
-                        maxZ+=1;
+                        maxX++;
+
+                        if (maxY >= scanningModel.getMaxY())
+                        {
+                            maxY = 1;
+                            maxZ += 1;
+                        }
+                        if (maxX >= scanningModel.getMaxX())
+                        {
+                            maxX = 1;
+                            maxY += 1;
+                        }
                     }
-                    if (maxX >= scanningModel.getMaxX())
-                    {
-                        maxX = 2;
-                        maxY += 30;
-                    }
-                }
                 //Thread.Sleep(1);
             });
-
+            }
 
            
             MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
@@ -101,8 +126,7 @@ namespace VisualVoxelLibrary
                 for (int x = scanningModel.getMinX(); x <= maxX; x++)
                 {
                     for (int y = scanningModel.getMinY(); y <= maxY; y++)
-                {
-                   
+                {             
                         color.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
                         drawVoxel(gl, color, meshVoxels[x,y,z]);
                     }

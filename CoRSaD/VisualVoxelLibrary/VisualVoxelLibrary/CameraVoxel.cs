@@ -27,9 +27,9 @@ namespace VisualVoxelLibrary
 
         public CameraVoxel()
         {
-            cameraPositionX = 50;
-            cameraPositionY = 75;
-            cameraPositionZ = 50;
+            cameraPositionX = 10;
+            cameraPositionY = 30;
+            cameraPositionZ = 10;
 
             cameraRouteVectorX = 0;
             cameraRouteVectorY = 0;
