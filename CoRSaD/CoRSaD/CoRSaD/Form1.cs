@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using SharpGL;
 using VoxelLibrary;
 using VisualVoxelLibrary;
+using CalculationStressLibrary;
 namespace CoRSaD
 {
     public partial class Form1 : Form
@@ -43,9 +44,10 @@ namespace CoRSaD
             cameraVoxel.Rotate(gl);
 
             //visualVoxel.Visualization(gl);
-            visualVoxel.VisualizationTemperatyre(gl);
+            visualVoxel.VisualizationTemperatyre2(gl);
+            
             //visualVoxel.VisualizationModelScanning(gl);
-           
+
             // rotation += 1.5f;
             Look();
         }
@@ -159,6 +161,29 @@ namespace CoRSaD
                 cameraVoxel.DownCamera();
                 return;
             }
+
+
+        }
+
+        private void openglControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //Timer timer = new Timer();
+        private void openglControl1_Click(object sender, EventArgs e)
+        {
+            //CalculationStress calculationStress = new CalculationStress();
+
+
+            //// Call this procedure when the application starts.  
+            //// Set to 1 second.  
+            //timer.Interval = 1;
+            //timer.Tick += new EventHandler(calculationStress.timer_Tick);
+
+            //// Enable timer.  
+            //timer.Enabled = true;
 
 
         }

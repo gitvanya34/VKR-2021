@@ -30,6 +30,7 @@ namespace CoRSaD
         private void InitializeComponent()
         {
             this.openglControl1 = new SharpGL.OpenGLControl();
+            this.labelTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.openglControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,25 +48,39 @@ namespace CoRSaD
             this.openglControl1.OpenGLInitialized += new System.EventHandler(this.openglControl1_OpenGLInitialized);
             this.openglControl1.OpenGLDraw += new SharpGL.RenderEventHandler(this.openglControl1_OpenGLDraw);
             this.openglControl1.Resized += new System.EventHandler(this.openglControl1_Resized);
+            this.openglControl1.Load += new System.EventHandler(this.openglControl1_Load);
+            this.openglControl1.Click += new System.EventHandler(this.openglControl1_Click);
             this.openglControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.openglControl1_KeyDown);
+            // 
+            // labelTime
+            // 
+            this.labelTime.AutoSize = true;
+            this.labelTime.Location = new System.Drawing.Point(1161, 629);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(59, 25);
+            this.labelTime.TabIndex = 1;
+            this.labelTime.Text = "label1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1285, 720);
+            this.Controls.Add(this.labelTime);
             this.Controls.Add(this.openglControl1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.openglControl1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private SharpGL.OpenGLControl openglControl1;
+        private System.Windows.Forms.Label labelTime;
     }
 }
 

@@ -28,7 +28,7 @@ namespace VisualVoxelLibrary
 
         private int[,] voxelXYZ;
 
-        private ColorVoxel color = new ColorVoxel(0,10000);//ввод в параметр максимального и минимлаьного стресса ,хотя у меня он максимальный 
+        private ColorVoxel color = new ColorVoxel(0, 100);
 
 
         public VisualVoxel(OpenGL Gl)
@@ -60,11 +60,12 @@ namespace VisualVoxelLibrary
         }
 
 
-        double t = 0;
+        double t = 0, 
+               tmax = 4;
         public void VisualizationTemperatyre(OpenGL gl)
         {
-
-            t += 0.0001;
+           
+        t += 0.0001;
             double temperature = 0;
             CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
             MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
@@ -75,14 +76,50 @@ namespace VisualVoxelLibrary
                     for (int y = scanningModel.getMinY(); y <= scanningModel.getMaxY(); y++)
                     {
                        
-                        temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
+                        //temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
+                        temperature = CalculationStress.AnalyticalSolutionConvection(x,y,z,t);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
                         Console.WriteLine("%d,%d,%d", x, y, z, temperature);
-                        color.ColorStressVoxel(temperature*10000);//разскоментить когда расчет сделаем
+                        color.ColorStressVoxel(temperature*1000);//разскоментить когда расчет сделаем
                         drawVoxel(gl, color, meshVoxels[x, y, z]);
                     }
                 }
             }
         }
+
+
+       private  CalculationStress calculationStress = new CalculationStress();
+        public void VisualizationTemperatyre2(OpenGL gl)
+        {
+
+            
+            double temperature = 0;
+
+           
+            CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
+            MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
+          
+            //for (t = 0; t < tmax;t+=0.5)
+            //{
+                calculationStress.NumbersHeatQuation1D();
+                for (int z = scanningModel.getMinZ(); z <= scanningModel.getMaxZ(); z++)
+                {
+                    for (int x = scanningModel.getMinX(); x <= scanningModel.getMaxX(); x++)
+                    {
+                        for (int y = scanningModel.getMinY(); y <= scanningModel.getMaxY(); y++)
+                        {
+                           
+                            //temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
+                            temperature = calculationStress.getTemperatyre(x,y,z,t);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
+                            Console.WriteLine("%d,%d,%d", x, y, z, temperature);
+                            color.ColorStressVoxel(temperature * 1000);//разскоментить когда расчет сделаем
+                            drawVoxel(gl, color, meshVoxels[x, y, z]);
+                        }
+                    }
+                }
+            //}
+        }
+
+
 
         System.Diagnostics.Stopwatch sw = new Stopwatch();
         int maxX = 1;
