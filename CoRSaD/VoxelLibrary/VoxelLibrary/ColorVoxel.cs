@@ -20,7 +20,7 @@ namespace VoxelLibrary
             green = 0;
             blue = 0;
         }
-        public ColorVoxel(float sMin, float sMax)//диапазон напряяжений
+        public ColorVoxel(double sMin, double sMax)//диапазон напряяжений
         {
             red = 0;
             green = 1;

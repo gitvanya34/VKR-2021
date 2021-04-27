@@ -28,7 +28,7 @@ namespace VisualVoxelLibrary
 
         private int[,] voxelXYZ;
 
-        private ColorVoxel color = new ColorVoxel(0, 1000);
+        private ColorVoxel color = new ColorVoxel(20, 1000);
 
 
         public VisualVoxel(OpenGL Gl)
