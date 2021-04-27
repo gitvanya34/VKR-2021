@@ -44,7 +44,8 @@ namespace CoRSaD
             cameraVoxel.Rotate(gl);
 
             //visualVoxel.Visualization(gl);
-            visualVoxel.VisualizationTemperatyre2(gl);
+            //visualVoxel.VisualizationTemperatyre2(gl);
+            visualVoxel.VisualizationTemperatyre3(gl);
             
             //visualVoxel.VisualizationModelScanning(gl);
 

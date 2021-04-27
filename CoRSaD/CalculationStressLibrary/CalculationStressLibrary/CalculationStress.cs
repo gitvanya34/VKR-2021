@@ -123,7 +123,7 @@ namespace CalculationStressLibrary
             return (K_Values[i - 1] + K_Values[i]) / 2.0;
         }
 
-        public double getTemperatyre(int x, int y, int z, double t)
+        public double getTemperatyre(int x, int y, int z)
         {
            return T_Curent[x];
         }

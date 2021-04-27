@@ -28,7 +28,7 @@ namespace VisualVoxelLibrary
 
         private int[,] voxelXYZ;
 
-        private ColorVoxel color = new ColorVoxel(0, 100);
+        private ColorVoxel color = new ColorVoxel(0, 1000);
 
 
         public VisualVoxel(OpenGL Gl)
@@ -60,8 +60,10 @@ namespace VisualVoxelLibrary
         }
 
 
-        double t = 0, 
-               tmax = 4;
+        double t = 0; 
+              
+
+        //визуализация аналитического решения 
         public void VisualizationTemperatyre(OpenGL gl)
         {
            
@@ -88,6 +90,7 @@ namespace VisualVoxelLibrary
 
 
        private  CalculationStress calculationStress = new CalculationStress();
+        //визуализация аналитического решения одномерного уравнения теплопроводности
         public void VisualizationTemperatyre2(OpenGL gl)
         {
 
@@ -109,7 +112,7 @@ namespace VisualVoxelLibrary
                         {
                            
                             //temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
-                            temperature = calculationStress.getTemperatyre(x,y,z,t);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
+                            temperature = calculationStress.getTemperatyre(x,y,z);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
                             Console.WriteLine("%d,%d,%d", x, y, z, temperature);
                             color.ColorStressVoxel(temperature * 1000);//разскоментить когда расчет сделаем
                             drawVoxel(gl, color, meshVoxels[x, y, z]);
@@ -120,6 +123,38 @@ namespace VisualVoxelLibrary
         }
 
 
+        private HeatEquation heatEquation  = new HeatEquation();
+        //визуализация трехмерного уравнения теплопроводности
+        public void VisualizationTemperatyre3(OpenGL gl)
+        {
+
+
+            double temperature = 0;
+
+
+            CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
+            MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
+
+            //for (t = 0; t < tmax;t+=0.5)
+            //{
+            heatEquation.CalculationHeatEquation();
+            for (int z = scanningModel.getMinZ(); z <= scanningModel.getMaxZ(); z++)
+            {
+                for (int x = scanningModel.getMinX(); x <= scanningModel.getMaxX(); x++)
+                {
+                    for (int y = scanningModel.getMinY(); y <= scanningModel.getMaxY(); y++)
+                    {
+
+                        //temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
+                        temperature = heatEquation.getTemperatyre(x, y, z);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
+                        Console.WriteLine("%d,%d,%d", x, y, z, temperature);
+                        color.ColorStressVoxel(temperature );//разскоментить когда расчет сделаем
+                        drawVoxel(gl, color, meshVoxels[x, y, z]);
+                    }
+                }
+            }
+            //}
+        }
 
         System.Diagnostics.Stopwatch sw = new Stopwatch();
         int maxX = 1;
