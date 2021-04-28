@@ -145,7 +145,10 @@ namespace VisualVoxelLibrary
                         temperature = heatEquation.getTemperature(x, y, z);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
                         Console.WriteLine("%d,%d,%d", x, y, z, temperature);
                         color.ColorStressVoxel(temperature );//разскоментить когда расчет сделаем
-                        drawVoxel(gl, color, meshVoxels[x, y, z]);
+
+                        if (heatEquation.boolMelted(x, y, z))
+                        { drawVoxel(gl, color, meshVoxels[x, y, z]); }
+                        else { drawSkeleton(gl, color, meshVoxels[x, y, z]); }
                     }
                 }
             }
@@ -324,13 +327,14 @@ namespace VisualVoxelLibrary
         {
             if (voxel.getBoolScanned())
             {
+                drawSkeleton(gl,color,voxel);
 
                 float sizeVoxel = 1;
                 float hfs = sizeVoxel / 2;
                 float dsqrt = (float)Math.Sqrt(hfs * hfs);
                 //рисование полигонов
                 gl.Begin(OpenGL.GL_QUADS);
-                gl.Color(color.getRed(), color.getGreen(), color.getBlue());
+                gl.Color(color.getRed(), color.getGreen(), color.getBlue(),255);
 
                 float xc = voxel.getVoxelX();
                 float yc = voxel.getVoxelY();
@@ -379,12 +383,38 @@ namespace VisualVoxelLibrary
                 //gl.Flush();
                 //рисование контуров
 
-                gl.Begin(OpenGL.GL_LINE_STRIP);
+              
+                gl.Finish();
+            }
+        }
+        private void drawSkeleton(OpenGL gl, ColorVoxel color, MeshVoxel voxel /*float xc, float yc, float zc*/)
+        {
+            if (voxel.getBoolScanned())
+            {
+
+                float sizeVoxel = 1;
+                float hfs = sizeVoxel / 2;
+                float dsqrt = (float)Math.Sqrt(hfs * hfs);
+                //рисование полигонов
+             
+                float xc = voxel.getVoxelX();
+                float yc = voxel.getVoxelY();
+                float zc = voxel.getVoxelZ();     
+                //gl.Flush();
+                //рисование контуров
+
+                gl.Begin(OpenGL.GL_LINES);
                 gl.Color(0, 0, 0);
-                // glLineWidth(w);
+             //    gl.LineWidth(1000000);
                 // glColor3d(0, 1, 0);
                 // glBegin(GL_LINE_STRIP);
                 //верхняя грань
+
+
+
+
+
+
                 gl.Vertex(xc - dsqrt, yc + hfs, zc - dsqrt);
                 gl.Vertex(xc + dsqrt, yc + hfs, zc - dsqrt);
 
@@ -428,6 +458,23 @@ namespace VisualVoxelLibrary
 
                 gl.Vertex(xc + dsqrt, yc + dsqrt, zc - hfs);
                 gl.Vertex(xc - dsqrt, yc + dsqrt, zc - hfs);
+
+
+                //
+
+                //передняя грань
+                gl.Vertex(xc - dsqrt, yc - dsqrt, zc - hfs);
+                gl.Vertex(xc - dsqrt, yc - dsqrt, zc + hfs);
+
+                gl.Vertex(xc + dsqrt, yc + dsqrt, zc - hfs);
+                gl.Vertex(xc + dsqrt, yc + dsqrt, zc + hfs);
+
+                //задняя грань
+                gl.Vertex(xc - dsqrt, yc + dsqrt, zc - hfs);
+                gl.Vertex(xc - dsqrt, yc + dsqrt, zc + hfs);
+
+                gl.Vertex(xc + dsqrt, yc - dsqrt, zc - hfs);
+                gl.Vertex(xc + dsqrt, yc - dsqrt, zc + hfs);
 
                 gl.End();
                 gl.Finish();

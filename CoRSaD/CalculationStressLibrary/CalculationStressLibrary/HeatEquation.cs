@@ -9,18 +9,22 @@ namespace CalculationStressLibrary
 {  
     public class HeatEquation
     {
-        private static double D = 0.1,//сплавленного материала 
-                      dx = 0.1,//шаг 
-                      dy = 1,
-                      dz = 1;
+        private static double D_dust = 0.24,//сплавленного материала 
+                              D_air=0.01,
+                              D_metal=0.6,
+
+                              dx = 1,//шаг 
+                              dy = 1,
+                              dz = 1;
 
         private double t = 0,
-                       tmax = 0.05,
-                       dt = 0.01* (dx * dx) / (2) ;//tay
+                       tmax = 0.5,
+                       dt = (dx * dx) / (2)*T_start ;//tay
 
-        private double T_start = 20,//температур аокружающей среды
-                       T_laser = 600;
-                      
+        private static double T_start = 20,//температур окружающей среды
+                              T_laser = 600,
+                              T_fusion_titan=160;
+
 
         private static int
                        a = 0,
@@ -43,15 +47,15 @@ namespace CalculationStressLibrary
                     {
                         T_Curent[i, j, k] = T_start;//начальная всех элементов и окружающей среды                                
                      
-                        K_Values[i, j, k] = D * T_Curent[i, j, k];
+                        K_Values[i, j, k] = D_dust;
 
-                        //так как у нас вокруг объекта есть пустые площади задаем для них отдельный  коэф теплопроводности (снизу можно сдлеать подложку на которой происходит печать)
-                        if (i == 0 || i == N-1)
-                            K_Values[i, j, k] = (/*1 -*/ D) * T_Curent[i, j, k];
-                        if (j == 0 || j == N-1)
-                            K_Values[i, j, k] = (/*1 -*/ D) * T_Curent[i, j, k];
-                        if (k == 0 || k == N-1)
-                            K_Values[i, j, k] = (/*1 -*/ D) * T_Curent[i, j, k];
+                        ////так как у нас вокруг объекта есть пустые площади задаем для них отдельный  коэф теплопроводности (снизу можно сдлеать подложку на которой происходит печать)
+                        if (i == 0 || i == N - 1)
+                            K_Values[i, j, k] = D_air;
+                        if (j == 0 || j == N - 1)
+                            K_Values[i, j, k] = D_air;
+                        if (k == 0 || k == N - 1)
+                            K_Values[i, j, k] = D_air;
                     }
                 }
             }
@@ -61,7 +65,6 @@ namespace CalculationStressLibrary
         }
         public void CalculationHeatEquation()
         {
-
             //Указываем источники их начальную температуру и время из водействия 
 
 
@@ -72,7 +75,7 @@ namespace CalculationStressLibrary
                 {
                     for (int i = 1; i < N - 1; i++)
                     {
-                        T_Next[i, j, k] = T_Curent[i, j, k] + (dt / (dx * dx)) * (
+                        T_Next[i, j, k] = T_Curent[i, j, k] + (K_Values[i,j,k]*dt / (dx * dx)) * (
                                                    K_half_plus_i(i, j, k) * (T_Curent[i + 1, j, k] - T_Curent[i, j, k])
                                                  - K_half_minus_i(i, j, k) * (T_Curent[i, j, k] - T_Curent[i - 1, j, k])
                                                  +
@@ -83,6 +86,10 @@ namespace CalculationStressLibrary
                                                  - K_half_minus_k(i, j, k) * (T_Curent[i, j, k] - T_Curent[i, j, k - 1]))
                                                  )
                                                  + Q_source(t, i, j, k);
+
+                        //изменение агрегатного состояния (порошок превратился в металл)
+                        if (T_Next[i, j, k] > T_fusion_titan)
+                            K_Values[i,j,k] = D_metal;
                     }
                 }
             }
@@ -93,25 +100,19 @@ namespace CalculationStressLibrary
                 {
                     for (int i = 1; i < N - 1; i++)
                     {
-                        K_Values[i, j, k] = D * T_Curent[i, j, k];
-                        //if (i == 0 || i == N-1)
-                        //    K_Values[i, j, k] = (/*1 -*/ 0) * T_Curent[i, j, k];
-                        //if (j == 0 || j == N-1)
-                        //    K_Values[i, j, k] = (/*1 -*/ 0) * T_Curent[i, j, k];
-                        //if (k == 0 || k == N-1)
-                        //    K_Values[i, j, k] = (/*1 -*/ 0) * T_Curent[i, j, k];
+                       
                     }
                 }
             }
-            //перезаписываем граничные условия 
+            //перезаписываем граничные условия в next
             for (int k = 0; k < N; k++)
             {
                 for (int j = 0; j < N; j++)
                 {
-                    for (int i = 0; i < N; i++) 
+                    for (int i = 0; i < N; i++)
                     {
                         if (i == 0 || i == N - 1)
-                            T_Next[i, j, k]=T_start;
+                            T_Next[i, j, k] = T_start;
                         if (j == 0 || j == N - 1)
                             T_Next[i, j, k] = T_start;
                         if (k == 0 || k == N - 1)
@@ -120,15 +121,28 @@ namespace CalculationStressLibrary
                 }
             }
             T_Curent = T_Next;
-            t += dt;
-           
+
+            //измененение шага по времени для устойчивости
+            dt = (dx * dx) / (2 * Tmax()) ;//tay
+            t += dt;   
             // Console.WriteLine(T_Curent[N-1, N-1, N-1]);
         }
-        //TODO: Добавить метод производящий нормализацию для выводо при большой точности 
+    
 
+        public double Tmax()
+        { double max=0;
+
+            foreach(double t in T_Curent)
+            {
+                max = t > max ? t : max;
+              
+            }
+            return max;
+        }
         //метод определения источника 
         public double Q_source(double t,int i, int j, int k)
         {
+            //TODO: Проверку является ли воксель  источчником на данном этапе  
             double q = 0;
             if (t < tmax)
             {
@@ -138,17 +152,6 @@ namespace CalculationStressLibrary
                         {
                             q = T_laser;
                         }
-
-
-                //T_Curent[6, 6, 1] = T_laser;
-                //T_Curent[6, 5, 1] = T_laser;
-                //T_Curent[5, 6, 1] = T_laser;
-                //T_Curent[5, 5, 1] = T_laser;
-
-                //T_Curent[1, N - 2, 1] = T_laser;
-                //T_Curent[1, 1, 1] = T_laser;
-                //T_Curent[N - 2, 1, 1] = T_laser;
-                //T_Curent[N - 2, N - 2, 1] = T_laser;
             }
             return q;
         }
@@ -156,42 +159,42 @@ namespace CalculationStressLibrary
         {
             double K_half = 0;
 
-            K_half=  (K_Values[ i, j, k] + K_Values[ i + 1, j, k]) / 2;
+            K_half =  (T_Curent[ i, j, k] + T_Curent[ i + 1, j, k]) / 2;
             return K_half;
         }
         public double K_half_minus_i( int i, int j, int k)
         {
             double K_half = 0;
 
-            K_half =  (K_Values[i, j, k] + K_Values[ i - 1, j, k]) / 2;
+            K_half =  (T_Curent[i, j, k] + T_Curent[ i - 1, j, k]) / 2;
             return K_half;
         }
         public double K_half_plus_j( int i, int j, int k)
         {
             double K_half = 0;
 
-            K_half= (K_Values[ i, j, k] + K_Values[ i, j+1, k]) / 2;
+            K_half= (T_Curent[ i, j, k] + T_Curent[ i, j+1, k]) / 2;
             return K_half;
         }
         public double K_half_minus_j( int i, int j, int k)
         {
             double K_half = 0;
 
-            K_half = (K_Values[ i, j, k] + K_Values[ i, j-1, k]) / 2;
+            K_half = (T_Curent[ i, j, k] + T_Curent[ i, j-1, k]) / 2;
             return K_half;
         }
         public double K_half_plus_k( int i, int j, int k)
         {
             double K_half = 0;
 
-            K_half= (K_Values[ i, j, k] + K_Values[ i , j, k + 1]) / 2;
+            K_half= (T_Curent[ i, j, k] + T_Curent[ i , j, k + 1]) / 2;
             return K_half;
         }
         public double K_half_minus_k( int i, int j, int k)
         {
             double K_half = 0;
 
-            K_half = (K_Values[ i, j, k] + K_Values[ i , j, k - 1]) / 2;
+            K_half = (T_Curent[ i, j, k] + T_Curent[ i , j, k - 1]) / 2;
             return K_half;
         }
         public double getTemperature(int x, int y, int z)
@@ -204,6 +207,16 @@ namespace CalculationStressLibrary
         }
         
 
+        public int toNormalization(int ijk)    //TODO: Добавить метод производящий нормализацию для выводо при большой точности 
+        {
+            return ijk * 10;
+        }
+        
+        //если вокслель расплавился то поменялся коэфциент теплопроводности ()
+        public bool boolMelted(int i ,int j, int k) //расплавился или нет 
+        {
+            return K_Values[i, j, k] == D_metal ? true : false; 
+        }
     }
    
 }
