@@ -127,11 +127,7 @@ namespace VisualVoxelLibrary
         //визуализация трехмерного уравнения теплопроводности
         public void VisualizationTemperatyre3(OpenGL gl)
         {
-
-
             double temperature = 0;
-
-
             CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
             MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
 
@@ -146,7 +142,7 @@ namespace VisualVoxelLibrary
                     {
 
                         //temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
-                        temperature = heatEquation.getTemperatyre(x, y, z);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
+                        temperature = heatEquation.getTemperature(x, y, z);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
                         Console.WriteLine("%d,%d,%d", x, y, z, temperature);
                         color.ColorStressVoxel(temperature );//разскоментить когда расчет сделаем
                         drawVoxel(gl, color, meshVoxels[x, y, z]);
@@ -155,8 +151,16 @@ namespace VisualVoxelLibrary
             }
             //}
         }
+        public double getTimeHeatEquation()
+        {
+          return  heatEquation.getTime();
+        }
+        public double getTemperatureVoxelHeatEquation(int x,int y, int z)
+        {
+          return  heatEquation.getTemperature(x,y,z);
+        }
 
-        System.Diagnostics.Stopwatch sw = new Stopwatch();
+            System.Diagnostics.Stopwatch sw = new Stopwatch();
         int maxX = 1;
         int maxY =1;
         int maxZ = 1;
