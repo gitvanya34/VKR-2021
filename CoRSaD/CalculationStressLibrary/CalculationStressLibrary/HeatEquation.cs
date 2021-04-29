@@ -19,11 +19,13 @@ namespace CalculationStressLibrary
 
         private double t = 0,
                        tmax = 0.5,
-                       dt = (dx * dx) / (2)*T_start ;//tay
+                       dt = (dx * dx) / (2) * T_start,//tay
+                       t_laser_voxel = 0.02,
+                       t_curent_laser_voxel = 0;
 
         private static double T_start = 20,//температур окружающей среды
                               T_laser = 600,
-                              T_fusion_titan=160;
+                              T_fusion_titan=1600;
 
 
         private static int
@@ -36,8 +38,15 @@ namespace CalculationStressLibrary
 
         double[,,] K_Values = new double[N , N , N ];
 
+
+        int[][] scaningVoxels;
+        int countScanningVoxels=0;
+
         public HeatEquation()
         {
+            //вводим воксели по порядку сканировнаия для источника 
+           
+
             // Инициализация массивов в соответсвии с начальными условиями
             for (int k = 0; k < N; k++)
             {
@@ -59,9 +68,10 @@ namespace CalculationStressLibrary
                     }
                 }
             }
-            
-
-
+        }
+        public void setScaningVoxels(int[][] scaningVoxels)
+        {
+             this.scaningVoxels = scaningVoxels;
         }
         public void CalculationHeatEquation()
         {
@@ -142,17 +152,23 @@ namespace CalculationStressLibrary
         //метод определения источника 
         public double Q_source(double t,int i, int j, int k)
         {
-            //TODO: Проверку является ли воксель  источчником на данном этапе  
+            ////TODO: Проверку является ли воксель  источчником на данном этапе  
+            //согласовать период прорисовки(сканирование) одного вокселя 
+            //установить порядок сканирования вокселей
             double q = 0;
-            if (t < tmax)
-            {
-                if(k==1)
-                    if(j==5)
-                        if (i==5)
-                        {
+            if(scaningVoxels[countScanningVoxels][0]+1==i)
+                if(scaningVoxels[countScanningVoxels][1]+1==j)
+                    if(scaningVoxels[countScanningVoxels][2]+1==k)
+                        if (t-t_curent_laser_voxel < t_laser_voxel)
+                        {                        
                             q = T_laser;
                         }
-            }
+                        else 
+                        {
+                            t_curent_laser_voxel = t;
+                            countScanningVoxels += 1;
+                        }
+           
             return q;
         }
         public double K_half_plus_i( int i, int j, int k)
@@ -213,7 +229,7 @@ namespace CalculationStressLibrary
         }
         
         //если вокслель расплавился то поменялся коэфциент теплопроводности ()
-        public bool boolMelted(int i ,int j, int k) //расплавился или нет 
+        public bool boolMelted(int i ,int j, int k) //расплавился воксель или нет 
         {
             return K_Values[i, j, k] == D_metal ? true : false; 
         }

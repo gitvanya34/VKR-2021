@@ -47,7 +47,7 @@ namespace CoRSaD
             //visualVoxel.VisualizationTemperatyre2(gl);
             visualVoxel.VisualizationTemperatyre3(gl);
             labelTime.Text=Convert.ToString( visualVoxel.getTimeHeatEquation());
-            labelTemperatureVoxel.Text = Convert.ToString(visualVoxel.getTemperatureVoxelHeatEquation(5, 5, 1));
+            labelTemperatureVoxel.Text = Convert.ToString(visualVoxel.getTemperatureVoxelHeatEquation(1, 1, 1));
             //visualVoxel.VisualizationModelScanning(gl);
 
             // rotation += 1.5f;

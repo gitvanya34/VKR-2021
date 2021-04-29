@@ -133,7 +133,9 @@ namespace VisualVoxelLibrary
 
             //for (t = 0; t < tmax;t+=0.5)
             //{
+            heatEquation.setScaningVoxels(scanningModel.SnakeScanning());
             heatEquation.CalculationHeatEquation();
+        
             for (int z = scanningModel.getMinZ(); z <= scanningModel.getMaxZ(); z++)
             {
                 for (int x = scanningModel.getMinX(); x <= scanningModel.getMaxX(); x++)
@@ -147,8 +149,13 @@ namespace VisualVoxelLibrary
                         color.ColorStressVoxel(temperature );//разскоментить когда расчет сделаем
 
                         if (heatEquation.boolMelted(x, y, z))
-                        { drawVoxel(gl, color, meshVoxels[x, y, z]); }
-                        else { drawSkeleton(gl, color, meshVoxels[x, y, z]); }
+                        { 
+                            drawVoxel(gl, color, meshVoxels[x, y, z]); 
+                        }
+                        else 
+                        { 
+                            drawSkeleton(gl, color, meshVoxels[x, y, z]); 
+                        }
                     }
                 }
             }
@@ -163,7 +170,7 @@ namespace VisualVoxelLibrary
           return  heatEquation.getTemperature(x,y,z);
         }
 
-            System.Diagnostics.Stopwatch sw = new Stopwatch();
+        
         int maxX = 1;
         int maxY =1;
         int maxZ = 1;

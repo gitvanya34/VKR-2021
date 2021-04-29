@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VoxelLibrary;
 namespace CalculationStressLibrary
 {
@@ -108,18 +109,40 @@ namespace CalculationStressLibrary
         }
 
         //сканирование змейкой метод для моделирования псолойного изготовления (можно потом сделать еще методом шазматной доски)
-        public void SnakeScanning()
+        //должен вернуть список или (одномерный массив с вокселями по порядку сканирования для того что бы в будущем из перебрать )
+        public int [][]  SnakeScanning()
         {
-            for (int z = minZ; z <= maxZ; z++)
+            //for (int z = minZ; z <= maxZ; z++)
+            //{
+            //    for (int x = minX; x <= maxX; x++)
+            //    {
+            //        for (int y = minY; y <= maxY; y++)
+            //        {
+            //            allMeshVoxels[x, y, z] = new MeshVoxel(x, y, z);
+            //        }
+            //    }
+            //}
+
+            //добавить проверку должен ли воксель печататься 
+            List<int[]> listSnake = new List<int[]>();
+            for (int z = minZ; z < maxZ; z++)
             {
-                for (int x = minX; x <= maxX; x++)
+                for (int y = minY; y < maxY; y++)
                 {
-                    for (int y = minY; y <= maxY; y++)
-                    {
-                        allMeshVoxels[x, y, z] = new MeshVoxel(x, y, z);
-                    }
+                    if (y % 2 == 0)
+                        for (int x = minX; x < maxX; x++)
+                        {
+                            listSnake.Add(new int[3] { x, y, z });
+                        }
+                    if (y % 2 != 0)
+                        for (int x = maxX-1; x >= minY; x--)
+                        {
+                            listSnake.Add(new int[3] { x, y, z });
+                        }
                 }
-            }         
+            }
+            
+            return  listSnake.ToArray();
         }
     }
 }
