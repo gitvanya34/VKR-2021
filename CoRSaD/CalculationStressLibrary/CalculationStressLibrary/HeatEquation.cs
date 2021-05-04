@@ -69,12 +69,10 @@ namespace CalculationStressLibrary
                 }
             }
         }
-        public void setScaningVoxels(int[][] scaningVoxels)
-        {
+        public void setScaningVoxels(int[][] scaningVoxels){
              this.scaningVoxels = scaningVoxels;
         }
-        public void CalculationHeatEquation()
-        {
+        public void CalculationHeatEquation(){
             //Указываем источники их начальную температуру и время из водействия 
 
 
@@ -139,8 +137,8 @@ namespace CalculationStressLibrary
         }
     
 
-        public double Tmax()
-        { double max=0;
+        public double Tmax(){ 
+            double max=0;
 
             foreach(double t in T_Curent)
             {
@@ -156,18 +154,19 @@ namespace CalculationStressLibrary
             //согласовать период прорисовки(сканирование) одного вокселя 
             //установить порядок сканирования вокселей
             double q = 0;
-            if(scaningVoxels[countScanningVoxels][0]+1==i)
-                if(scaningVoxels[countScanningVoxels][1]+1==j)
-                    if(scaningVoxels[countScanningVoxels][2]+1==k)
-                        if (t-t_curent_laser_voxel < t_laser_voxel)
-                        {                        
-                            q = T_laser;
-                        }
-                        else 
-                        {
-                            t_curent_laser_voxel = t;
-                            countScanningVoxels += 1;
-                        }
+            if(countScanningVoxels< scaningVoxels.Length)
+                if(scaningVoxels[countScanningVoxels][0]+1==i)
+                    if(scaningVoxels[countScanningVoxels][1]+1==j)
+                        if(scaningVoxels[countScanningVoxels][2]+1==k)
+                            if (t-t_curent_laser_voxel < t_laser_voxel)
+                            {                        
+                                q = T_laser;
+                            }
+                            else 
+                            {
+                                t_curent_laser_voxel = t;
+                                countScanningVoxels += 1;
+                            }
            
             return q;
         }

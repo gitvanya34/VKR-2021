@@ -123,7 +123,7 @@ namespace CalculationStressLibrary
             //    }
             //}
 
-            //добавить проверку должен ли воксель печататься 
+            //добавить проверку должен ли воксель печататься проопуск если не должен 
             List<int[]> listSnake = new List<int[]>();
             for (int z = minZ; z < maxZ; z++)
             {
