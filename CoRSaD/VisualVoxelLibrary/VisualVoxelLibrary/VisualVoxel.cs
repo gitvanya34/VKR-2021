@@ -32,9 +32,17 @@ namespace VisualVoxelLibrary
 
 
         public VisualVoxel(OpenGL Gl)
-        {gl = Gl; }
+        {
+            gl = Gl;
+            
+        }
         public VisualVoxel()
-        { ImportXYZ(); }
+        {   }
+        public VisualVoxel(Options options)
+        { 
+            ImportXYZ();
+            heatEquation = new HeatEquation(options);
+        }
 
 
         
@@ -121,21 +129,24 @@ namespace VisualVoxelLibrary
                 }
             //}
         }
-
-
-        private HeatEquation heatEquation  = new HeatEquation();
+        Options options; 
+        HeatEquation heatEquation;
         //визуализация трехмерного уравнения теплопроводности
-        public void VisualizationTemperatyre3(OpenGL gl)
+        public void VisualizationTemperatyre3(OpenGL gl, OpenGL gl2, bool boolPauseCalc )
         {
+
+          
             double temperature = 0;
             CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
             MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
 
             //for (t = 0; t < tmax;t+=0.5)
             //{
-            heatEquation.setScaningVoxels(scanningModel.SnakeScanning());
-            heatEquation.CalculationHeatEquation();
-        
+            if (boolPauseCalc)
+            {
+                heatEquation.setScaningVoxels(scanningModel.SnakeScanning());
+                heatEquation.CalculationHeatEquation();
+            }
             for (int z = scanningModel.getMinZ(); z <= scanningModel.getMaxZ(); z++)
             {
                 for (int x = scanningModel.getMinX(); x <= scanningModel.getMaxX(); x++)
@@ -151,10 +162,12 @@ namespace VisualVoxelLibrary
                         if (heatEquation.boolMelted(x, y, z))
                         { 
                             drawVoxel(gl, color, meshVoxels[x, y, z]); 
+                            drawVoxel(gl2, new ColorVoxel(), meshVoxels[x, y, z]); 
                         }
                         else 
                         { 
                             drawSkeleton(gl, color, meshVoxels[x, y, z]); 
+                            drawSkeleton(gl2, color, meshVoxels[x, y, z]); 
                         }
                     }
                 }

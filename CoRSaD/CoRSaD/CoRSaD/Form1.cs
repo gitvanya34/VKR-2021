@@ -30,52 +30,69 @@ namespace CoRSaD
 
         private void openglControl1_OpenGLDraw(object sender, RenderEventArgs args)
         {
+            if (boolPauseCalc)
+            {
+                OpenGLDraw(openglControl1.OpenGL, openglControl2.OpenGL);        
+            }
+            
+        }
+        private void OpenGLDraw(OpenGL gl,OpenGL gl2)
+        {
             //  Возьмём OpenGL объект
-            OpenGL gl = openglControl1.OpenGL;
+           
 
             //  Очищаем буфер цвета и глубины
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
+            gl2.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 
             //  Загружаем единичную матрицу
             gl.LoadIdentity();
+            gl2.LoadIdentity();
 
             //  Указываем оси вращения (x, y, z)
             //gl.Rotate(rotation, 0.0f, 0.0f, 1.0f);
             cameraVoxel.Rotate(gl);
+            cameraVoxel.Rotate(gl2);
 
             //visualVoxel.Visualization(gl);
             //visualVoxel.VisualizationTemperatyre2(gl);
-            visualVoxel.VisualizationTemperatyre3(gl);
-            labelTime.Text=Convert.ToString( visualVoxel.getTimeHeatEquation());
+            visualVoxel.VisualizationTemperatyre3(gl,gl2, boolPauseCalc);
+
+            labelTime.Text = Convert.ToString(visualVoxel.getTimeHeatEquation());
+
             labelTemperatureVoxel.Text = Convert.ToString(visualVoxel.getTemperatureVoxelHeatEquation(1, 1, 1));
             //visualVoxel.VisualizationModelScanning(gl);
 
             // rotation += 1.5f;
-            Look();
+            Look(gl);
+            Look(gl2);
         }
-
         //рисуем полигон по четырем точкам
 
         // Эту функцию используем для задания некоторых значений по умолчанию
         private void openglControl1_OpenGLInitialized(object sender, EventArgs e)
         {
-            //  Возьмём OpenGL объект
-            OpenGL gl = openglControl1.OpenGL;
-
+            OpenGLInitialized(openglControl1.OpenGL);
+            OpenGLInitialized(openglControl2.OpenGL);
+        }
+        private void OpenGLInitialized(OpenGL gl)
+        {
             //  Фоновый цвет по умолчанию (в данном случае цвет голубой)
             gl.ClearColor(0.1f, 0.5f, 1.0f, 0);
         }
 
-       
+
+
         private void openglControl1_Resized(object sender, EventArgs e)
         {
-            Look();
+            Look(openglControl1.OpenGL);
+            Look(openglControl2.OpenGL);
         }
 
-        private void Look()
+        private void Look(OpenGL gl)
         {
             //  Возьмём OpenGL объект
-            OpenGL gl = openglControl1.OpenGL;
+         //   OpenGL gl = openglControl1.OpenGL;
             //  Зададим матрицу проекции
             gl.MatrixMode(OpenGL.GL_PROJECTION);
 
@@ -167,15 +184,12 @@ namespace CoRSaD
 
         }
 
-        private void openglControl1_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         //Timer timer = new Timer();
         private void openglControl1_Click(object sender, EventArgs e)
         {
+            Form2 frm2 = new Form2(); //где Form2 - название вашей формы
+            frm2.Show();
             //CalculationStress calculationStress = new CalculationStress();
 
 
@@ -188,6 +202,25 @@ namespace CoRSaD
             //timer.Enabled = true;
 
 
+        }
+
+        private void openglControl1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool boolPauseCalc = false;
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            CalculationStressLibrary.Options options = new Options();
+            visualVoxel = new VisualVoxel(options);
+            cameraVoxel = new CameraVoxel();
+            boolPauseCalc = !boolPauseCalc;
+        }
+
+        private void buttonPause_Click(object sender, EventArgs e)
+        {
+            boolPauseCalc = !boolPauseCalc;
         }
     }
 }

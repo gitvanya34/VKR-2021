@@ -18,14 +18,14 @@ namespace CalculationStressLibrary
                               dz = 1;
 
         private double t = 0,
-                       tmax = 0.5,
                        dt = (dx * dx) / (2) * T_start,//tay
-                       t_laser_voxel = 0.02,
+                       t_laser_voxel = 0.02,//время обработки одного вокселя лазером
                        t_curent_laser_voxel = 0;
 
         private static double T_start = 20,//температур окружающей среды
                               T_laser = 600,
-                              T_fusion_titan=1600;
+                              T_fusion_titan=1600,
+                              T_fusion_metal;
 
 
         private static int
@@ -42,11 +42,15 @@ namespace CalculationStressLibrary
         int[][] scaningVoxels;
         int countScanningVoxels=0;
 
-        public HeatEquation()
+        public HeatEquation(Options option)
         {
             //вводим воксели по порядку сканировнаия для источника 
-           
-
+            D_air = option.get_D_air;
+            D_metal = option.get_D_metal;
+            T_start = option.get_T_start;//температур окружающей среды
+            T_laser = option.get_T_laser;
+            T_fusion_metal = option.get_T_fusion_metal;
+            t_laser_voxel = option.get_t_laser_voxel;
             // Инициализация массивов в соответсвии с начальными условиями
             for (int k = 0; k < N; k++)
             {
