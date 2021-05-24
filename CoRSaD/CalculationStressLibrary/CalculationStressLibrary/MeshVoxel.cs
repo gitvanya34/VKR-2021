@@ -12,6 +12,9 @@ namespace CalculationStressLibrary
 
         private bool boolScanned; //отсканированны воксели True если воксель должен печаться, по умолчанию FAlse
         private bool boolScannedCount;// true Вкосели которые отсканированные на данный момент расчета
+
+       
+
         public MeshVoxel(int x,int y, int z/*, bool boolScanned*/)
         {
             voxel = new VoxelLibrary.Voxel(x, y, z);

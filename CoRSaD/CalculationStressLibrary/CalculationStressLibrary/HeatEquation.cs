@@ -20,7 +20,7 @@ namespace CalculationStressLibrary
         private double t = 0,
                        dt = (dx * dx) / (2) * T_start,//tay
                        t_laser_voxel = 0.02,//время обработки одного вокселя лазером
-                       t_curent_laser_voxel = 0;
+                       t_curent_laser_voxel = 0;//время для таймера 
 
         private static double T_start = 20,//температур окружающей среды
                               T_laser = 600,
@@ -29,21 +29,28 @@ namespace CalculationStressLibrary
 
 
         private static int
-                       a = 0,
-                       b = 10,//заменить на voxelmaxXYZ
-                       N = (int)(((double)(b - a)) / dx) +2 ;
+                       a ,b ,N;
 
-        double[,,] T_Next = new double[N , N , N ];
-        double[,,] T_Curent = new double[N , N , N ];//4измерение время
-
-        double[,,] K_Values = new double[N , N , N ];
-
+        double[,,] T_Next;
+        double[,,] T_Curent;
+        double[,,] K_Values;
+        bool[,,] boolPrinted;//ячейки которые которые прошли обработку 
 
         int[][] scaningVoxels;
         int countScanningVoxels=0;
 
+        Deformations deformation;
+
         public HeatEquation(Options option)
         {
+            a = 0;
+            b = 26;//заменить на voxelmaxXYZ
+            N = (int)(((double)(b - a)) / dx) + 2;
+
+            T_Next = new double[N, N, N];
+            T_Curent = new double[N, N, N];//4измерение время
+            K_Values = new double[N, N, N];
+            boolPrinted = new bool[N, N, N];
             //вводим воксели по порядку сканировнаия для источника 
             D_air = option.get_D_air;
             D_metal = option.get_D_metal;
@@ -69,17 +76,21 @@ namespace CalculationStressLibrary
                             K_Values[i, j, k] = D_air;
                         if (k == 0 || k == N - 1)
                             K_Values[i, j, k] = D_air;
+
+                        boolPrinted[i, j, k] = false;
                     }
                 }
             }
+
+            deformation = new Deformations(option,dx,N);
+
         }
         public void setScaningVoxels(int[][] scaningVoxels){
              this.scaningVoxels = scaningVoxels;
         }
         public void CalculationHeatEquation(){
             //Указываем источники их начальную температуру и время из водействия 
-
-
+   
             //Расчет следующего значения температуры в сетке
             for (int k = 1; k < N - 1; k++)
             {
@@ -101,21 +112,24 @@ namespace CalculationStressLibrary
 
                         //изменение агрегатного состояния (порошок превратился в металл)
                         if (T_Next[i, j, k] > T_fusion_titan)
-                            K_Values[i,j,k] = D_metal;
+                        {
+                            K_Values[i, j, k] = D_metal;
+                            boolPrinted[i, j, k] = true;
+                        }
                     }
                 }
             }
-            //перезаписываем значения коэфциентов теплопроводности для всей сетки 
-            for (int k = 1; k < N - 1; k++)
-            {
-                for (int j = 1; j < N - 1; j++)
-                {
-                    for (int i = 1; i < N - 1; i++)
-                    {
+            ////перезаписываем значения коэфциентов теплопроводности для всей сетки 
+            //for (int k = 1; k < N - 1; k++)
+            //{
+            //    for (int j = 1; j < N - 1; j++)
+            //    {
+            //        for (int i = 1; i < N - 1; i++)
+            //        {
                        
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
             //перезаписываем граничные условия в next
             for (int k = 0; k < N; k++)
             {
@@ -132,6 +146,10 @@ namespace CalculationStressLibrary
                     }
                 }
             }
+            /////
+
+            deformation.CalculationDeformations(T_Next, boolPrinted);
+            ////
             T_Curent = T_Next;
 
             //измененение шага по времени для устойчивости
@@ -220,6 +238,18 @@ namespace CalculationStressLibrary
         {
             return T_Curent[x,y,z];
         }
+        public double getDeformationX(int x, int y, int z)
+        {
+            return deformation.getDeformationX(x,y,z);
+        }
+        public double getDeformationY(int x, int y, int z)
+        {
+            return deformation.getDeformationY(x, y, z);
+        }
+        public double getDeformationZ(int x, int y, int z)
+        {
+            return deformation.getDeformationZ(x, y, z);
+        }
         public double getTime()
         {
             return t;
@@ -234,7 +264,7 @@ namespace CalculationStressLibrary
         //если вокслель расплавился то поменялся коэфциент теплопроводности ()
         public bool boolMelted(int i ,int j, int k) //расплавился воксель или нет 
         {
-            return K_Values[i, j, k] == D_metal ? true : false; 
+            return boolPrinted[i, j, k]; 
         }
     }
    

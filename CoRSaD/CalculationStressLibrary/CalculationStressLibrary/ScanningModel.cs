@@ -132,12 +132,14 @@ namespace CalculationStressLibrary
                     if (y % 2 == 0)
                         for (int x = minX; x < maxX; x++)
                         {
-                            listSnake.Add(new int[3] { x, y, z });
+                            if(allMeshVoxels[x+1,y+1,z+1].getBoolScanned())
+                                 listSnake.Add(new int[3] { x, y, z });
                         }
                     if (y % 2 != 0)
                         for (int x = maxX-1; x >= minY; x--)
                         {
-                            listSnake.Add(new int[3] { x, y, z });
+                            if (allMeshVoxels[x+1, y+1, z+1].getBoolScanned())
+                                listSnake.Add(new int[3] { x, y, z });
                         }
                 }
             }

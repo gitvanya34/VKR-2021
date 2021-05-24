@@ -28,7 +28,11 @@ namespace VisualVoxelLibrary
 
         private int[,] voxelXYZ;
 
-        private ColorVoxel color = new ColorVoxel(0, 1000);
+        private ColorVoxel colorTemperature = new ColorVoxel(0, 1000);
+        private ColorVoxel colorDeformationX = new ColorVoxel(-10, 10);
+        private ColorVoxel colorDeformationY = new ColorVoxel(-10, 10);
+        private ColorVoxel colorDeformationZ = new ColorVoxel(-10, 10);
+
 
 
         public VisualVoxel(OpenGL Gl)
@@ -62,8 +66,8 @@ namespace VisualVoxelLibrary
             CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
             foreach(MeshVoxel meshVoxel in scanningModel.getAllMeshVoxels())
             {
-                color.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
-                drawVoxel(gl, color, meshVoxel);
+                colorTemperature.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
+                drawVoxel(gl, colorTemperature, meshVoxel);
             }
         }
 
@@ -89,8 +93,8 @@ namespace VisualVoxelLibrary
                         //temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
                         temperature = CalculationStress.AnalyticalSolutionConvection(x,y,z,t);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
                         Console.WriteLine("%d,%d,%d", x, y, z, temperature);
-                        color.ColorStressVoxel(temperature*1000);//разскоментить когда расчет сделаем
-                        drawVoxel(gl, color, meshVoxels[x, y, z]);
+                        colorTemperature.ColorStressVoxel(temperature*1000);//разскоментить когда расчет сделаем
+                        drawVoxel(gl, colorTemperature, meshVoxels[x, y, z]);
                     }
                 }
             }
@@ -122,31 +126,34 @@ namespace VisualVoxelLibrary
                             //temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
                             temperature = calculationStress.getTemperatyre(x,y,z);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
                             Console.WriteLine("%d,%d,%d", x, y, z, temperature);
-                            color.ColorStressVoxel(temperature * 1000);//разскоментить когда расчет сделаем
-                            drawVoxel(gl, color, meshVoxels[x, y, z]);
+                        colorTemperature.ColorStressVoxel(temperature * 1000);//разскоментить когда расчет сделаем
+                            drawVoxel(gl, colorTemperature, meshVoxels[x, y, z]);
                         }
                     }
                 }
             //}
         }
+
         Options options; 
         HeatEquation heatEquation;
         //визуализация трехмерного уравнения теплопроводности
         public void VisualizationTemperatyre3(OpenGL gl, OpenGL gl2, bool boolPauseCalc )
         {
-
-          
             double temperature = 0;
-            CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
+            ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
             MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
+            heatEquation.setScaningVoxels(scanningModel.SnakeScanning());
 
-            //for (t = 0; t < tmax;t+=0.5)
-            //{
             if (boolPauseCalc)
             {
-                heatEquation.setScaningVoxels(scanningModel.SnakeScanning());
-                heatEquation.CalculationHeatEquation();
+            
+                for (int i = 0; i < 100; i++)
+                {
+                 
+                    heatEquation.CalculationHeatEquation();
+                }
             }
+
             for (int z = scanningModel.getMinZ(); z <= scanningModel.getMaxZ(); z++)
             {
                 for (int x = scanningModel.getMinX(); x <= scanningModel.getMaxX(); x++)
@@ -155,19 +162,25 @@ namespace VisualVoxelLibrary
                     {
 
                         //temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
-                        temperature = heatEquation.getTemperature(x, y, z);//x+1,y+1,z+1 так как в массиивк етсь 0 значения 
-                        Console.WriteLine("%d,%d,%d", x, y, z, temperature);
-                        color.ColorStressVoxel(temperature );//разскоментить когда расчет сделаем
+                        temperature = heatEquation.getTemperature(x, y, z);//x+1,y+1,z+1 так как в массиивк етсь 0 значения                    
+                        colorTemperature.ColorStressVoxel(temperature );//разскоментить когда расчет сделаем
+                        colorDeformationX.ColorDeformationVoxel(heatEquation.getDeformationX(x, y, z));
+                        colorDeformationY.ColorDeformationVoxel(heatEquation.getDeformationY(x, y, z));
+                        colorDeformationZ.ColorDeformationVoxel(heatEquation.getDeformationZ(x, y, z));
 
                         if (heatEquation.boolMelted(x, y, z))
                         { 
-                            drawVoxel(gl, color, meshVoxels[x, y, z]); 
-                            drawVoxel(gl2, new ColorVoxel(), meshVoxels[x, y, z]); 
+                            drawVoxel(gl, colorTemperature, meshVoxels[x, y, z]); 
+                            drawVoxel(gl2,
+                                      colorDeformationX,
+                                      colorDeformationY,
+                                      colorDeformationZ,
+                                      meshVoxels[x, y, z]); 
                         }
                         else 
                         { 
-                            drawSkeleton(gl, color, meshVoxels[x, y, z]); 
-                            drawSkeleton(gl2, color, meshVoxels[x, y, z]); 
+                            drawSkeleton(gl, colorTemperature, meshVoxels[x, y, z]); 
+                            drawSkeleton(gl2, colorTemperature, meshVoxels[x, y, z]); 
                         }
                     }
                 }
@@ -225,9 +238,9 @@ namespace VisualVoxelLibrary
                 for (int x = scanningModel.getMinX(); x <= maxX; x++)
                 {
                     for (int y = scanningModel.getMinY(); y <= maxY; y++)
-                {             
-                        color.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
-                        drawVoxel(gl, color, meshVoxels[x,y,z]);
+                    {
+                        colorTemperature.ColorStressVoxel(/*float valueStress*/ 70);//разскоментить когда расчет сделаем
+                        drawVoxel(gl, colorTemperature, meshVoxels[x,y,z]);
                     }
                 }
             }
@@ -268,7 +281,7 @@ namespace VisualVoxelLibrary
         private  void ImportXYZ()
         {
             string path = @"D:\\StudentData\\VKR-2021\\Вокселизация змеюка\\voxel pyton";//заменить на патч 
-            StreamReader sr = new StreamReader($"{path}\\cubevoxel.xyz");
+            StreamReader sr = new StreamReader($"{path}\\tor.xyz");
             string numbers = sr.ReadToEnd();      
             numbers = numbers.Replace("\r", "").Replace("\n", " ");
             convert_Data_from_FileXYZ(numbers);
@@ -404,6 +417,82 @@ namespace VisualVoxelLibrary
                 //рисование контуров
 
               
+                gl.Finish();
+            }
+        }
+        private void drawVoxel(OpenGL gl, ColorVoxel colorX,ColorVoxel colorY,ColorVoxel colorZ, MeshVoxel voxel /*float xc, float yc, float zc*/)
+        {
+            if (voxel.getBoolScanned())
+            {
+                drawSkeleton(gl, colorX, voxel);
+
+                float sizeVoxel = 1;
+                float hfs = sizeVoxel / 2;
+                float dsqrt = (float)Math.Sqrt(hfs * hfs);
+                //рисование полигонов
+                float xc = voxel.getVoxelX();
+                float yc = voxel.getVoxelY();
+                float zc = voxel.getVoxelZ();
+                ///////
+                drawSkeleton(gl, colorX, voxel);
+                gl.Begin(OpenGL.GL_QUADS);
+                gl.Color(colorX.getRed(), colorX.getGreen(), colorX.getBlue(), 255);
+
+                //левая грань
+                gl.Vertex(xc - hfs, yc - dsqrt, zc - dsqrt);
+                gl.Vertex(xc - hfs, yc + dsqrt, zc - dsqrt);
+                gl.Vertex(xc - hfs, yc + dsqrt, zc + dsqrt);
+                gl.Vertex(xc - hfs, yc - dsqrt, zc + dsqrt);
+
+
+                //правая грань
+                gl.Vertex(xc + hfs, yc - dsqrt, zc - dsqrt);
+                gl.Vertex(xc + hfs, yc + dsqrt, zc - dsqrt);
+                gl.Vertex(xc + hfs, yc + dsqrt, zc + dsqrt);
+                gl.Vertex(xc + hfs, yc - dsqrt, zc + dsqrt);
+
+                gl.End();
+                //////////
+
+
+
+
+                gl.Begin(OpenGL.GL_QUADS);
+                gl.Color(colorY.getRed(), colorY.getGreen(), colorY.getBlue(), 255);
+              
+                //верхняя грань
+                gl.Vertex(xc - dsqrt, yc + hfs, zc - dsqrt);
+                gl.Vertex(xc + dsqrt, yc + hfs, zc - dsqrt);
+                gl.Vertex(xc + dsqrt, yc + hfs, zc + dsqrt);
+                gl.Vertex(xc - dsqrt, yc + hfs, zc + dsqrt);
+
+
+                //нижняя грань
+                gl.Vertex(xc - dsqrt, yc - hfs, zc - dsqrt);
+                gl.Vertex(xc + dsqrt, yc - hfs, zc - dsqrt);
+                gl.Vertex(xc + dsqrt, yc - hfs, zc + dsqrt);
+                gl.Vertex(xc - dsqrt, yc - hfs, zc + dsqrt);
+                gl.End();
+
+                gl.Begin(OpenGL.GL_QUADS);
+                gl.Color(colorZ.getRed(), colorZ.getGreen(), colorZ.getBlue(), 255);
+                //передняя грань
+                gl.Vertex(xc - dsqrt, yc - dsqrt, zc + hfs);
+                gl.Vertex(xc + dsqrt, yc - dsqrt, zc + hfs);
+                gl.Vertex(xc + dsqrt, yc + dsqrt, zc + hfs);
+                gl.Vertex(xc - dsqrt, yc + dsqrt, zc + hfs);
+
+                //задняя грань
+                gl.Vertex(xc - dsqrt, yc - dsqrt, zc - hfs);
+                gl.Vertex(xc + dsqrt, yc - dsqrt, zc - hfs);
+                gl.Vertex(xc + dsqrt, yc + dsqrt, zc - hfs);
+                gl.Vertex(xc - dsqrt, yc + dsqrt, zc - hfs);
+
+                gl.End();
+                //gl.Flush();
+                //рисование контуров
+
+
                 gl.Finish();
             }
         }

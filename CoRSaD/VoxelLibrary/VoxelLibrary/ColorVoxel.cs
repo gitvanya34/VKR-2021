@@ -41,6 +41,33 @@ namespace VoxelLibrary
             green =1-k;
             blue = 0;
         }
+        public ColorVoxel ColorDeformationVoxel(double n)
+        {
+            double k= n * stepColor;
+            //TODO расчет граддиента и цветов; на вхоод приходит номер вокселя и его значения напрядения ,
+            //в это время изменяется значени ргб в объекте , объект отсылается в функцию проприсовки и затем изменяется сново  
+           
+           if((stressMax-stressMin) /2 > n)
+            {
+                blue = 0;
+                red = k;
+                green = 1 - k;
+            }
+            if ((stressMax - stressMin) / 2 < n)
+            {
+                blue = k;
+                green = 1 - k;
+                red = 0;
+            }
+            if (((stressMax - stressMin) / 2)==n)
+            {
+                red = 0;
+                green = 1;
+                blue = 0;
+            }
+            return this;
+        }
+
         public double getRed()
         {
             return red;
