@@ -43,23 +43,30 @@ namespace VoxelLibrary
         }
         public ColorVoxel ColorDeformationVoxel(double n)
         {
-            double k= n * stepColor;
+            double k= Math.Abs(n) * stepColor;
             //TODO расчет граддиента и цветов; на вхоод приходит номер вокселя и его значения напрядения ,
             //в это время изменяется значени ргб в объекте , объект отсылается в функцию проприсовки и затем изменяется сново  
-           
-           if((stressMax-stressMin) /2 > n)
-            {
-                blue = 0;
-                red = k;
-                green = 1 - k;
-            }
-            if ((stressMax - stressMin) / 2 < n)
+
+
+            //TODO расчет граддиента и цветов; на вхоод приходит номер вокселя и его значения напрядения ,
+            //в это время изменяется значени ргб в объекте , объект отсылается в функцию проприсовки и затем изменяется сново  
+
+            double mediana = (Math.Abs(stressMax) - Math.Abs(stressMin))/2;
+
+            if (mediana > n)
             {
                 blue = k;
                 green = 1 - k;
                 red = 0;
             }
-            if (((stressMax - stressMin) / 2)==n)
+            if (mediana < n)
+            {
+                blue = 0;
+                red = k;
+                green = 1 - k;
+              
+            }
+            if (mediana == n)
             {
                 red = 0;
                 green = 1;

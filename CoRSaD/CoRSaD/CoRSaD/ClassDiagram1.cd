@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="CoRSaD.Form1" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AATQAAAAISCACRAEBACABBACAAEAAUAAMRQIAwQB1AA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="cameraVoxel" />
+      <Field Name="visualVoxel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CalculationStressLibrary.CalculationStress" Collapsed="true">
+    <Position X="10.25" Y="3.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CalculationStressLibrary.Deformations" Collapsed="true">
+    <Position X="8.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CalculationStressLibrary.HeatEquation" Collapsed="true">
+    <Position X="8.5" Y="4.5" Width="1.5" />
+    <AssociationLine Name="getDeformation" Type="CalculationStressLibrary.Deformations" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.875" Y="5.062" />
+        <Point X="8.875" Y="5.437" />
+        <Point X="9" Y="5.437" />
+        <Point X="9" Y="6.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="getDeformation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CalculationStressLibrary.MeshVoxel" Collapsed="true">
+    <Position X="2.25" Y="6.75" Width="1.25" />
+    <AssociationLine Name="Voxel" Type="VoxelLibrary.Voxel" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="7.031" />
+        <Point X="6" Y="7.031" />
+        <Point X="6" Y="6.312" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.795" Y="0.49" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Voxel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CalculationStressLibrary.Options" Collapsed="true">
+    <Position X="1.75" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CalculationStressLibrary.ScanningModel" Collapsed="true">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <AssociationLine Name="AllMeshVoxels" Type="CalculationStressLibrary.MeshVoxel" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="4.5" />
+        <Point X="2.875" Y="4.5" />
+        <Point X="2.875" Y="6.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="AllMeshVoxels" />
+      <Property Name="Voxels" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VoxelLibrary.ColorVoxel">
+    <Position X="10.25" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VoxelLibrary.Voxel" Collapsed="true">
+    <Position X="4.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VisualVoxelLibrary.CameraVoxel" Collapsed="true">
+    <Position X="5" Y="0.5" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VisualVoxelLibrary.VisualVoxel" Collapsed="true">
+    <Position X="5.25" Y="2.75" Width="3" />
+    <Members>
+      <Property Name="getHeatEquation" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ColorDeformationY" Type="VoxelLibrary.ColorVoxel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="2.96" />
+        <Point X="8.625" Y="2.96" />
+        <Point X="8.625" Y="2.875" />
+        <Point X="10.25" Y="2.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ColorDeformationZ" Type="VoxelLibrary.ColorVoxel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="3.154" />
+        <Point X="8.625" Y="3.154" />
+        <Point X="8.625" Y="2.438" />
+        <Point X="10.25" Y="2.438" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ColorTemperature" Type="VoxelLibrary.ColorVoxel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="2.824" />
+        <Point X="8.625" Y="2.824" />
+        <Point X="8.625" Y="2.062" />
+        <Point X="10.25" Y="2.062" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="getColorDeformationX" Type="VoxelLibrary.ColorVoxel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.188" Y="2.75" />
+        <Point X="8.188" Y="1.688" />
+        <Point X="10.25" Y="1.688" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="HeatEquation" Type="CalculationStressLibrary.HeatEquation" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.758" Y="3.312" />
+        <Point X="6.758" Y="4.708" />
+        <Point X="7.925" Y="4.708" />
+        <Point X="7.925" Y="4.75" />
+        <Point X="8.5" Y="4.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="CalculationStress" Type="CalculationStressLibrary.CalculationStress" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="3.312" />
+        <Point X="8" Y="3.776" />
+        <Point X="10.25" Y="3.776" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="CalculationStress" />
+      <Property Name="ColorDeformationY" />
+      <Property Name="ColorDeformationZ" />
+      <Property Name="ColorTemperature" />
+      <Property Name="getColorDeformationX" />
+      <Property Name="getHeatEquation" />
+      <Property Name="HeatEquation" />
+      <Property Name="Options" />
+      <Property Name="Voxels" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

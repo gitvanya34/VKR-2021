@@ -39,8 +39,8 @@ namespace CalculationStressLibrary
         int[][] scaningVoxels;
         int countScanningVoxels=0;
 
-        Deformations deformation;
-
+        private Deformations deformation;
+        public Deformations getDeformation { get => deformation; }
         public HeatEquation(Options option)
         {
             a = 0;
@@ -149,8 +149,20 @@ namespace CalculationStressLibrary
             /////
 
             deformation.CalculationDeformations(T_Next, boolPrinted);
+
+
             ////
-            T_Curent = T_Next;
+            //for (int k = 0; k < N ; k++)
+            //{
+            //    for (int j = 0; j < N ; j++)
+            //    {
+            //        for (int i = 0; i < N; i++)
+            //        {
+                        T_Curent/*[i, j, k]*/ = T_Next/*[i, j, k]*/;
+            //        }
+            //    }
+            //}
+           
 
             //измененение шага по времени для устойчивости
             dt = (dx * dx) / (2 * Tmax()) ;//tay

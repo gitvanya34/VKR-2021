@@ -29,11 +29,20 @@ namespace VisualVoxelLibrary
         private int[,] voxelXYZ;
 
         private ColorVoxel colorTemperature = new ColorVoxel(0, 1000);
-        private ColorVoxel colorDeformationX = new ColorVoxel(-10, 10);
-        private ColorVoxel colorDeformationY = new ColorVoxel(-10, 10);
-        private ColorVoxel colorDeformationZ = new ColorVoxel(-10, 10);
+        private ColorVoxel colorDeformationX = new ColorVoxel(-245, 245);
+        private ColorVoxel colorDeformationY = new ColorVoxel(-245, 245);
+        private ColorVoxel colorDeformationZ = new ColorVoxel(-245, 245);
 
 
+        public HeatEquation getHeatEquation { get => heatEquation; }
+        public Voxel[] Voxels { get => voxels;  }
+        public ColorVoxel ColorTemperature { get => colorTemperature;  }
+        public ColorVoxel getColorDeformationX { get => colorDeformationX; set => colorDeformationX = value; }
+        public ColorVoxel ColorDeformationY { get => colorDeformationY; set => colorDeformationY = value; }
+        public ColorVoxel ColorDeformationZ { get => colorDeformationZ; set => colorDeformationZ = value; }
+        public CalculationStress CalculationStress { get => calculationStress; set => calculationStress = value; }
+        public HeatEquation HeatEquation { get => heatEquation; set => heatEquation = value; }
+        public Options Options { get => options; set => options = value; }
 
         public VisualVoxel(OpenGL Gl)
         {
@@ -42,9 +51,9 @@ namespace VisualVoxelLibrary
         }
         public VisualVoxel()
         {   }
-        public VisualVoxel(Options options)
+        public void optionsToHeatEquation(Options options)
         { 
-            ImportXYZ();
+           // ImportXYZ();
             heatEquation = new HeatEquation(options);
         }
 
@@ -149,7 +158,6 @@ namespace VisualVoxelLibrary
             
                 for (int i = 0; i < 100; i++)
                 {
-                 
                     heatEquation.CalculationHeatEquation();
                 }
             }
@@ -278,10 +286,11 @@ namespace VisualVoxelLibrary
             }
           //  Console.WriteLine(voxelXYZ);    
         }
-        private  void ImportXYZ()
+        public  void ImportXYZ(StreamReader sr)
         {
-            string path = @"D:\\StudentData\\VKR-2021\\Вокселизация змеюка\\voxel pyton";//заменить на патч 
-            StreamReader sr = new StreamReader($"{path}\\tor.xyz");
+            //string path = @"D:\\StudentData\\VKR-2021\\Вокселизация змеюка\\voxel pyton";//заменить на патч 
+            //StreamReader sr = new StreamReader($"{path}\\tor.xyz");
+
             string numbers = sr.ReadToEnd();      
             numbers = numbers.Replace("\r", "").Replace("\n", " ");
             convert_Data_from_FileXYZ(numbers);
@@ -589,5 +598,8 @@ namespace VisualVoxelLibrary
                 gl.Finish();
             }
         }
+        
+       
+
     }
 }

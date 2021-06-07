@@ -25,6 +25,7 @@ namespace VisualVoxelLibrary
         private float rotationY;
         private float rotationZ;
 
+        private float rotate = 5;
         public CameraVoxel()
         {
             cameraPositionX = 0;
@@ -90,27 +91,27 @@ namespace VisualVoxelLibrary
 
         public void RotateUpCameraX()
         {
-            rotationX++;
+            rotationX += rotate;
         }
         public void RotateDownCameraX()
         {
-            rotationX--;
+            rotationX -= rotate;
         }
         public void RotateUpCameraY()
         {
-            rotationY++;
+            rotationY += rotate;
         }
         public void RotateDownCameraY()
         {
-            rotationY--;
+            rotationY -= rotate;
         }
         public void RotateUpCameraZ()
         {
-            rotationZ++;
+            rotationZ += rotate;
         }
         public void RotateDownCameraZ()
         {
-            rotationZ--;
+            rotationZ-=rotate;
         }
 
     }

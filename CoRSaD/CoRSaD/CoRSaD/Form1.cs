@@ -11,6 +11,8 @@ using SharpGL;
 using VoxelLibrary;
 using VisualVoxelLibrary;
 using CalculationStressLibrary;
+using System.IO;
+
 namespace CoRSaD
 {
     public partial class Form1 : Form
@@ -213,7 +215,7 @@ namespace CoRSaD
         private void buttonStart_Click(object sender, EventArgs e)
         {
             CalculationStressLibrary.Options options = new Options();
-            visualVoxel = new VisualVoxel(options);
+            visualVoxel.optionsToHeatEquation(options);
             cameraVoxel = new CameraVoxel();
             boolPauseCalc = !boolPauseCalc;
         }
@@ -221,6 +223,55 @@ namespace CoRSaD
         private void buttonPause_Click(object sender, EventArgs e)
         {
             boolPauseCalc = !boolPauseCalc;
+        }
+
+        private void buttonExportCSV_Click(object sender, EventArgs e)
+        {
+            StreamWriter myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+           
+            
+            saveFileDialog1.Filter = "deformation (*.csv)|*.csv|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                myStream = new System.IO.StreamWriter(saveFileDialog1.OpenFile());
+                if (myStream  != null)
+                {
+                    visualVoxel.getHeatEquation.getDeformation.ExportDeformationsToCSV(myStream);
+                    myStream.Close();
+                }
+            }
+            textBoxLOG.Text += "\r\n"+DateTime.Now+":" +" Файл " + saveFileDialog1.FileName+".csv" + " сохранен в "+saveFileDialog1.InitialDirectory + "\r\n ";
+        }
+
+        private void buttonImportXYZ_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "txt files (*.xyz)|*.xyz|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var filePath = openFileDialog.FileName;
+
+                    var fileStream = openFileDialog.OpenFile();
+
+                    using (StreamReader reader = new StreamReader(fileStream))
+                    {
+                        visualVoxel.ImportXYZ(reader);
+                            
+                        textBoxLOG.Text += "\r\n" + DateTime.Now + ": Импортирован файл" + filePath + "\r\n ";
+                    }
+                }
+            }
+
+           
         }
     }
 }

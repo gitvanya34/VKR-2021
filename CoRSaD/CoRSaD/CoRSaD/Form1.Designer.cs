@@ -103,6 +103,7 @@ namespace CoRSaD
             this.buttonExportCSV.TabIndex = 20;
             this.buttonExportCSV.Text = "Экспорт .csv";
             this.buttonExportCSV.UseVisualStyleBackColor = true;
+            this.buttonExportCSV.Click += new System.EventHandler(this.buttonExportCSV_Click);
             // 
             // panel2
             // 
@@ -139,6 +140,7 @@ namespace CoRSaD
             this.buttonImportXYZ.TabIndex = 16;
             this.buttonImportXYZ.Text = "Импорт .xyz";
             this.buttonImportXYZ.UseVisualStyleBackColor = true;
+            this.buttonImportXYZ.Click += new System.EventHandler(this.buttonImportXYZ_Click);
             // 
             // buttonImportCSV
             // 

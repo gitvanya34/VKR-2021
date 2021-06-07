@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="VisualVoxelLibrary.CameraVoxel">
+    <Position X="2" Y="6.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AABBAAAAAAQAgAIAAACQACEAEBAAAECgAAABAACAABA=</HashCode>
+      <FileName>CameraVoxel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VisualVoxelLibrary.VisualVoxel">
+    <Position X="6.5" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AEAMEABAAABRCIAAEABQQEAmGQgEAABAIAQEQXBAAhA=</HashCode>
+      <FileName>VisualVoxel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="colorDeformationX" />
+      <Field Name="colorDeformationZ" />
+      <Field Name="colorDeformationY" />
+      <Field Name="calculationStress" />
+      <Field Name="colorTemperature" />
+      <Field Name="heatEquation" />
+      <Field Name="gl" />
+      <Field Name="options" />
+      <Field Name="voxels" />
+      <Property Name="CalculationStress" />
+      <Property Name="ColorDeformationY" />
+      <Property Name="ColorDeformationZ" />
+      <Property Name="ColorTemperature" />
+      <Property Name="getColorDeformationX" />
+      <Property Name="getHeatEquation" />
+      <Property Name="HeatEquation" />
+      <Property Name="Options" />
+      <Property Name="Voxels" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VoxelLibrary.ColorVoxel">
+    <Position X="2" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VoxelLibrary.Voxel">
+    <Position X="10.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CalculationStressLibrary.CalculationStress" Collapsed="true">
+    <Position X="10.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CalculationStressLibrary.Deformations">
+    <Position X="14.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CalculationStressLibrary.HeatEquation">
+    <Position X="9.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="getDeformation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CalculationStressLibrary.MeshVoxel">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Voxel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CalculationStressLibrary.Options" Collapsed="true">
+    <Position X="7" Y="9.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CalculationStressLibrary.ScanningModel">
+    <Position X="14" Y="6" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="AllMeshVoxels" />
+      <Property Name="Voxels" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SharpGL.OpenGL" Collapsed="true">
+    <Position X="10.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
