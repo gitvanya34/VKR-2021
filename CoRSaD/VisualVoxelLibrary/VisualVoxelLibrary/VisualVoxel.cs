@@ -155,11 +155,11 @@ namespace VisualVoxelLibrary
 
             if (boolPauseCalc)
             {
-            
-                for (int i = 0; i < 100; i++)
-                {
-                    heatEquation.CalculationHeatEquation();
-                }
+                if(heatEquation.CountScanningVoxels<heatEquation.ScaningVoxels.Length)
+                    for (int i = 0; i < 100; i++)
+                    {
+                        heatEquation.CalculationHeatEquation();
+                    }
             }
 
             for (int z = scanningModel.getMinZ(); z <= scanningModel.getMaxZ(); z++)
@@ -177,13 +177,14 @@ namespace VisualVoxelLibrary
                         colorDeformationZ.ColorDeformationVoxel(heatEquation.getDeformationZ(x, y, z));
 
                         if (heatEquation.boolMelted(x, y, z))
-                        { 
+                        {   
                             drawVoxel(gl, colorTemperature, meshVoxels[x, y, z]); 
                             drawVoxel(gl2,
                                       colorDeformationX,
                                       colorDeformationY,
                                       colorDeformationZ,
                                       meshVoxels[x, y, z]); 
+
                         }
                         else 
                         { 
@@ -195,6 +196,7 @@ namespace VisualVoxelLibrary
             }
             //}
         }
+
         public double getTimeHeatEquation()
         {
           return  heatEquation.getTime();

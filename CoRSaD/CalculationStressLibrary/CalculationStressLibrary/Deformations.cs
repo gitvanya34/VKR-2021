@@ -152,7 +152,6 @@ namespace CalculationStressLibrary
                         Ez_Next[i, j, k] = -dx * ((alpha_cup[i, j, k + 1] - alpha_cup[i, j, k - 1]) / 2);
 
 
-
                         if (Math.Abs(Ex_Curent[i, j, k]) > Math.Abs(E_crit))
                             if (Math.Abs(Ex_Next[i, j, k]) < Math.Abs(Ex_Curent[i, j, k]))
                                 Ex_Next[i, j, k] = Ex_Curent[i, j, k];

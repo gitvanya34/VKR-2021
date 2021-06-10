@@ -59,10 +59,11 @@ namespace CoRSaD
             //visualVoxel.Visualization(gl);
             //visualVoxel.VisualizationTemperatyre2(gl);
             visualVoxel.VisualizationTemperatyre3(gl,gl2, boolPauseCalc);
+            currentLayerLog();
 
             labelTime.Text = Convert.ToString(visualVoxel.getTimeHeatEquation());
-
-            labelTemperatureVoxel.Text = Convert.ToString(visualVoxel.getTemperatureVoxelHeatEquation(1, 1, 1));
+            
+            //labelTemperatureVoxel.Text = Convert.ToString(visualVoxel.getTemperatureVoxelHeatEquation(1, 1, 1));
             //visualVoxel.VisualizationModelScanning(gl);
 
             // rotation += 1.5f;
@@ -85,6 +86,7 @@ namespace CoRSaD
 
 
 
+
         private void openglControl1_Resized(object sender, EventArgs e)
         {
             Look(openglControl1.OpenGL);
@@ -101,8 +103,8 @@ namespace CoRSaD
             //  Единичная матрица для последующих преобразований
             gl.LoadIdentity();
 
-            //  Преобразование
-            gl.Perspective(75.0f, (double)Width / (double)Height, 0.01, 100.0);
+            //  Преобразовани
+            gl.Perspective(100.0f, (double)Width / (double)Height, 0.01, 100.0);
 
 
             ////
@@ -210,11 +212,26 @@ namespace CoRSaD
         {
 
         }
+        public void currentLayerLog()
+        {
+            if(visualVoxel.HeatEquation.CountScanningVoxels <
+                                                        visualVoxel.HeatEquation.ScaningVoxels.Length)
+            textBoxLOG.AppendText ( "\r\n" + DateTime.Now + ":" + " Отсканированно вокселей " + visualVoxel.HeatEquation.CountScanningVoxels+"/"+ visualVoxel.HeatEquation.ScaningVoxels.Length + "\r\n ");
+        }
 
         private bool boolPauseCalc = false;
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            CalculationStressLibrary.Options options = new Options();
+            CalculationStressLibrary.Options options = new Options(
+                                                             Convert.ToDouble(textBox_d_dust.Text),
+                                                             Convert.ToDouble(textBox_d_air.Text),
+                                                             Convert.ToDouble(textBox_d_metal.Text),
+                                                             Convert.ToDouble(textBox_T_start.Text),
+                                                             Convert.ToDouble(textBox_T_laser.Text),
+                                                             Convert.ToDouble(textBox_T_fusion_metal.Text),
+                                                             Convert.ToDouble(textBox_t_laser_voxel.Text),
+                                                             Convert.ToDouble(textBox_alpha_0.Text),
+                                                             Convert.ToDouble(textBox_E_crit.Text));
             visualVoxel.optionsToHeatEquation(options);
             cameraVoxel = new CameraVoxel();
             boolPauseCalc = !boolPauseCalc;
@@ -251,7 +268,7 @@ namespace CoRSaD
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.InitialDirectory = "D:\\StudentData\\VKR-2021\\Вокселизация змеюка\\voxel pyton";
                 openFileDialog.Filter = "txt files (*.xyz)|*.xyz|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
@@ -272,6 +289,11 @@ namespace CoRSaD
             }
 
            
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -41,10 +41,13 @@ namespace CalculationStressLibrary
 
         private Deformations deformation;
         public Deformations getDeformation { get => deformation; }
+        public int[][] ScaningVoxels { get => scaningVoxels; set => scaningVoxels = value; }
+        public int CountScanningVoxels { get => countScanningVoxels; set => countScanningVoxels = value; }
+
         public HeatEquation(Options option)
         {
             a = 0;
-            b = 26;//заменить на voxelmaxXYZ
+            b = 59;//заменить на voxelmaxXYZ
             N = (int)(((double)(b - a)) / dx) + 2;
 
             T_Next = new double[N, N, N];
@@ -88,6 +91,7 @@ namespace CalculationStressLibrary
         public void setScaningVoxels(int[][] scaningVoxels){
              this.scaningVoxels = scaningVoxels;
         }
+
         public void CalculationHeatEquation(){
             //Указываем источники их начальную температуру и время из водействия 
    
@@ -204,6 +208,7 @@ namespace CalculationStressLibrary
            
             return q;
         }
+
         public double K_half_plus_i( int i, int j, int k)
         {
             double K_half = 0;
