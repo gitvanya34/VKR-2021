@@ -31,6 +31,8 @@ namespace CoRSaD
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textboxSpeedCalc = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxLOG = new System.Windows.Forms.TextBox();
@@ -88,6 +90,8 @@ namespace CoRSaD
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.textboxSpeedCalc);
             this.tabPage1.Controls.Add(this.panel4);
             this.tabPage1.Controls.Add(this.panel3);
             this.tabPage1.Controls.Add(this.panel2);
@@ -105,6 +109,24 @@ namespace CoRSaD
             this.tabPage1.Text = "Расчет";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(946, 459);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(157, 25);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Скорость расчета";
+            // 
+            // textboxSpeedCalc
+            // 
+            this.textboxSpeedCalc.Location = new System.Drawing.Point(1138, 456);
+            this.textboxSpeedCalc.Name = "textboxSpeedCalc";
+            this.textboxSpeedCalc.Size = new System.Drawing.Size(98, 31);
+            this.textboxSpeedCalc.TabIndex = 17;
+            this.textboxSpeedCalc.Text = "1";
+            this.textboxSpeedCalc.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // panel4
             // 
@@ -478,6 +500,7 @@ namespace CoRSaD
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -533,6 +556,8 @@ namespace CoRSaD
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox textboxSpeedCalc;
+        private System.Windows.Forms.Label label11;
     }
 }
 

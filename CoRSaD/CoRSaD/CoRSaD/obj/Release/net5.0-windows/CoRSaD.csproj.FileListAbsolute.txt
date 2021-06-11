@@ -27,3 +27,4 @@ D:\StudentData\VKR-2021\CoRSaD\CoRSaD\CoRSaD\obj\Release\net5.0-windows\CoRSaD.d
 D:\StudentData\VKR-2021\CoRSaD\CoRSaD\CoRSaD\obj\Release\net5.0-windows\ref\CoRSaD.dll
 D:\StudentData\VKR-2021\CoRSaD\CoRSaD\CoRSaD\obj\Release\net5.0-windows\CoRSaD.pdb
 D:\StudentData\VKR-2021\CoRSaD\CoRSaD\CoRSaD\obj\Release\net5.0-windows\CoRSaD.genruntimeconfig.cache
+D:\StudentData\VKR-2021\CoRSaD\CoRSaD\CoRSaD\obj\Release\net5.0-windows\CoRSaD.Form2.resources

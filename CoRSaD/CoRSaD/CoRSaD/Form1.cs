@@ -20,6 +20,7 @@ namespace CoRSaD
         VisualVoxelLibrary.VisualVoxel visualVoxel = new VisualVoxel();
         VisualVoxelLibrary.CameraVoxel cameraVoxel = new CameraVoxel();
         float rotation = 0.0f;
+        bool boolModelTrue = false;
         public Form1()
         {
             InitializeComponent();
@@ -32,10 +33,9 @@ namespace CoRSaD
 
         private void openglControl1_OpenGLDraw(object sender, RenderEventArgs args)
         {
-            if (boolPauseCalc)
-            {
+            if (boolModelTrue)
                 OpenGLDraw(openglControl1.OpenGL, openglControl2.OpenGL);        
-            }
+            
             
         }
         private void OpenGLDraw(OpenGL gl,OpenGL gl2)
@@ -58,7 +58,8 @@ namespace CoRSaD
 
             //visualVoxel.Visualization(gl);
             //visualVoxel.VisualizationTemperatyre2(gl);
-            visualVoxel.VisualizationTemperatyre3(gl,gl2, boolPauseCalc);
+           
+            visualVoxel.VisualizationTemperatyre3(gl,gl2, boolPauseCalc, textboxSpeedCalc.Text != "" ? Convert.ToInt32(textboxSpeedCalc.Text) : 0);
             currentLayerLog();
 
             labelTime.Text = Convert.ToString(visualVoxel.getTimeHeatEquation());
@@ -212,33 +213,46 @@ namespace CoRSaD
         {
 
         }
+
+        int value=-1;
         public void currentLayerLog()
         {
-            if(visualVoxel.HeatEquation.CountScanningVoxels <
-                                                        visualVoxel.HeatEquation.ScaningVoxels.Length)
-            textBoxLOG.AppendText ( "\r\n" + DateTime.Now + ":" + " Отсканированно вокселей " + visualVoxel.HeatEquation.CountScanningVoxels+"/"+ visualVoxel.HeatEquation.ScaningVoxels.Length + "\r\n ");
+           
+            if(value != visualVoxel.HeatEquation.CountScanningVoxels)
+            if (visualVoxel.HeatEquation.CountScanningVoxels <
+                                                        visualVoxel.HeatEquation.ScaningVoxels.Length && boolPauseCalc)
+            {
+                textBoxLOG.AppendText("\r\n" + DateTime.Now + ":" + " Отсканированно вокселей " + visualVoxel.HeatEquation.CountScanningVoxels + "/" + visualVoxel.HeatEquation.ScaningVoxels.Length + "\r\n ");
+                    value = visualVoxel.HeatEquation.CountScanningVoxels;
+            }
+            
         }
 
         private bool boolPauseCalc = false;
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            CalculationStressLibrary.Options options = new Options(
-                                                             Convert.ToDouble(textBox_d_dust.Text),
-                                                             Convert.ToDouble(textBox_d_air.Text),
-                                                             Convert.ToDouble(textBox_d_metal.Text),
-                                                             Convert.ToDouble(textBox_T_start.Text),
-                                                             Convert.ToDouble(textBox_T_laser.Text),
-                                                             Convert.ToDouble(textBox_T_fusion_metal.Text),
-                                                             Convert.ToDouble(textBox_t_laser_voxel.Text),
-                                                             Convert.ToDouble(textBox_alpha_0.Text),
-                                                             Convert.ToDouble(textBox_E_crit.Text));
-            visualVoxel.optionsToHeatEquation(options);
-            cameraVoxel = new CameraVoxel();
+            createOptionsCalc();
             boolPauseCalc = !boolPauseCalc;
         }
 
+        public void createOptionsCalc()
+        {
+            CalculationStressLibrary.Options options = new Options(
+                                                          Convert.ToDouble(textBox_d_dust.Text),
+                                                          Convert.ToDouble(textBox_d_air.Text),
+                                                          Convert.ToDouble(textBox_d_metal.Text),
+                                                          Convert.ToDouble(textBox_T_start.Text),
+                                                          Convert.ToDouble(textBox_T_laser.Text),
+                                                          Convert.ToDouble(textBox_T_fusion_metal.Text),
+                                                          Convert.ToDouble(textBox_t_laser_voxel.Text),
+                                                          Convert.ToDouble(textBox_alpha_0.Text),
+                                                          Convert.ToDouble(textBox_E_crit.Text));
+            visualVoxel.optionsToHeatEquation(options);
+            cameraVoxel = new CameraVoxel();
+        }
         private void buttonPause_Click(object sender, EventArgs e)
         {
+
             boolPauseCalc = !boolPauseCalc;
         }
 
@@ -261,7 +275,9 @@ namespace CoRSaD
                     myStream.Close();
                 }
             }
+         
             textBoxLOG.Text += "\r\n"+DateTime.Now+":" +" Файл " + saveFileDialog1.FileName+".csv" + " сохранен в "+saveFileDialog1.InitialDirectory + "\r\n ";
+          
         }
 
         private void buttonImportXYZ_Click(object sender, EventArgs e)
@@ -284,14 +300,26 @@ namespace CoRSaD
                         visualVoxel.ImportXYZ(reader);
                             
                         textBoxLOG.Text += "\r\n" + DateTime.Now + ": Импортирован файл" + filePath + "\r\n ";
+
+                        
+                    }
+                    if (openFileDialog.FileName != null)
+                    {
+                        createOptionsCalc();
+                        boolModelTrue = true;
+                       
                     }
                 }
             }
 
-           
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

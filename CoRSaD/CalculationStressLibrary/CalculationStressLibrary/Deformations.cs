@@ -26,31 +26,35 @@ namespace CalculationStressLibrary
 
 
         private double E_crit=-245;//изменить на значение
-        private int N;
+        private int N,I,J,K;
         private double dx;
 
         private double T_start;
  
-        public Deformations(Options options, double dx,int N)
+        public Deformations(Options options, double dx,int I,int J,int K)
         {
-            this.N = N;
+            this.I = I;
+            this.J = J;
+            this.K = K;
             this.dx = dx;
             T_start = options.get_T_start;
-            Ex_Curent = new double[N, N, N];
-            Ey_Curent = new double[N, N, N];
-            Ez_Curent = new double[N, N, N];
+            Ex_Curent = new double[I, J, K];
+            Ey_Curent = new double[I, J, K];
+            Ez_Curent = new double[I, J, K];
 
-            Ex_Next = new double[N, N, N];
-            Ey_Next = new double[N, N, N];
-            Ez_Next = new double[N, N, N];
+            Ex_Next = new double[I,J,K];
+            Ey_Next = new double[I,J,K];
+            Ez_Next = new double[I, J, K];
 
-            alpha_cup = new double[N, N, N];
+            alpha_cup = new double[I, J, K];
 
-            for (int k = 0; k < N; k++)
+            Parallel.For(0, K,
+            k =>
+            //for (int k = 0; k < N; k++)
             {
-                for (int j = 0; j < N; j++)
+                for (int j = 0; j <J; j++)
                 {
-                    for (int i = 0; i < N; i++)
+                    for (int i = 0; i < I; i++)
                     {
                         Ex_Curent[i, j, k] = 0;
                         Ey_Curent[i, j, k] = 0;
@@ -63,7 +67,7 @@ namespace CalculationStressLibrary
                         alpha_cup[i, j, k] = 0;
                     }
                 }
-            }
+            });
 
             //Ex_Curent[1, 1, 1] = 200500;
             //Ey_Curent[1, 1, 1] = 200500;
@@ -123,12 +127,13 @@ namespace CalculationStressLibrary
         }
         public void CalculationDeformations(double[,,]  T, bool[,,] boolPrinted)
         {
-
-            for (int k = 0; k < N; k++)
+            Parallel.For(0, K ,
+            k =>
+            //for (int k = 0; k < N; k++)
             {
-                for (int j = 0; j < N; j++)
+                for (int j = 0; j < J; j++)
                 {
-                    for (int i = 0; i < N; i++)
+                    for (int i = 0; i < I; i++)
                     {
                         if (boolPrinted[i, j, k])
                             alpha_cup[i, j, k] = alpha_0 * (T[i, j, k] - T_start);
@@ -137,13 +142,16 @@ namespace CalculationStressLibrary
 
                     }
                 }
-            }
-            
-            for (int k = 1; k < N - 1; k++)
+            });
+
+
+            Parallel.For(1, K - 1,
+            k =>
+            // for (int k = 1; k < N - 1; k++)
             {
-                for (int j = 1; j < N - 1; j++)
+                for (int j = 1; j < J - 1; j++)
                 {
-                    for (int i = 1; i < N - 1; i++)
+                    for (int i = 1; i < I - 1; i++)
                     {
 
 
@@ -158,35 +166,37 @@ namespace CalculationStressLibrary
 
 
 
-                        if (Math.Abs(Ey_Curent[i, j, k]) > Math.Abs(E_crit))  
-                           if (Math.Abs(Ey_Next[i, j, k]) < Math.Abs(Ey_Curent[i, j, k]))
+                        if (Math.Abs(Ey_Curent[i, j, k]) > Math.Abs(E_crit))
+                            if (Math.Abs(Ey_Next[i, j, k]) < Math.Abs(Ey_Curent[i, j, k]))
                                 Ey_Next[i, j, k] = Ey_Curent[i, j, k];
-                       
-                        
 
-                        if (Math.Abs(Ez_Curent[i, j, k]) > Math.Abs(E_crit)) 
-                              if (Math.Abs(Ez_Next[i, j, k]) < Math.Abs(Ez_Curent[i, j, k]))
-                                    Ez_Next[i, j, k] = Ez_Curent[i, j, k];
-                        
-                        
-               
+
+
+                        if (Math.Abs(Ez_Curent[i, j, k]) > Math.Abs(E_crit))
+                            if (Math.Abs(Ez_Next[i, j, k]) < Math.Abs(Ez_Curent[i, j, k]))
+                                Ez_Next[i, j, k] = Ez_Curent[i, j, k];
+
+
+
 
                     }
                 }
-            }
+            });
 
-            for (int k = 0; k < N ; k++)
+
+            Parallel.For(0, K, k =>
+            //for (int k = 0; k < N ; k++)
             {
-                for (int j = 0; j < N ; j++)
+                for (int j = 0; j < J; j++)
                 {
-                    for (int i = 0; i < N ; i++)
+                    for (int i = 0; i < I; i++)
                     {
-                        Ex_Curent[i,j,k] = Ex_Next[i,j,k];
-                        Ey_Curent[i,j,k] = Ey_Next[i,j,k];
-                        Ez_Curent[i,j,k] = Ez_Next[i,j,k];
+                        Ex_Curent[i, j, k] = Ex_Next[i, j, k];
+                        Ey_Curent[i, j, k] = Ey_Next[i, j, k];
+                        Ez_Curent[i, j, k] = Ez_Next[i, j, k];
                     }
                 }
-            }
+            });
 
            // ExporttoFileCSV();
 
@@ -198,11 +208,11 @@ namespace CalculationStressLibrary
         public  void ExportDeformationsToCSV(StreamWriter myStream)
         {
           
-                for (int k = 1; k < N - 1; k++)
+                for (int k = 1; k < K - 1; k++)
                 {
-                    for (int j = 1; j < N - 1; j++)
+                    for (int j = 1; j < J - 1; j++)
                     {
-                        for (int i = 1; i < N - 1; i++)
+                        for (int i = 1; i < I - 1; i++)
                         {
                             myStream.Write(Ex_Curent[i, j, k].ToString() + ";");
                             myStream.Write(Ey_Curent[i, j, k].ToString() + ";");

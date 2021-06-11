@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace VisualVoxelLibrary
 {
     
@@ -45,16 +46,18 @@ namespace VisualVoxelLibrary
         public Options Options { get => options; set => options = value; }
 
         public VisualVoxel(OpenGL Gl)
-        {
-            gl = Gl;
-            
-        }
+        { gl = Gl;}
+
+        ScanningModel scanningModel;
+        MeshVoxel[,,] meshVoxels;
         public VisualVoxel()
-        {   }
+        {
+          
+        }
         public void optionsToHeatEquation(Options options)
         { 
            // ImportXYZ();
-            heatEquation = new HeatEquation(options);
+            heatEquation = new HeatEquation(options, scanningModel.getMaxX(),scanningModel.getMaxY(),scanningModel.getMaxZ() );
         }
 
 
@@ -92,6 +95,7 @@ namespace VisualVoxelLibrary
             double temperature = 0;
             CalculationStressLibrary.ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
             MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
+
             for (int z = scanningModel.getMinZ(); z <= scanningModel.getMaxZ(); z++)
             {
                 for (int x = scanningModel.getMinX(); x <= scanningModel.getMaxX(); x++)
@@ -146,22 +150,24 @@ namespace VisualVoxelLibrary
         Options options; 
         HeatEquation heatEquation;
         //визуализация трехмерного уравнения теплопроводности
-        public void VisualizationTemperatyre3(OpenGL gl, OpenGL gl2, bool boolPauseCalc )
+        public void VisualizationTemperatyre3(OpenGL gl, OpenGL gl2, bool boolPauseCalc,int countStep)
         {
             double temperature = 0;
-            ScanningModel scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
-            MeshVoxel[,,] meshVoxels = scanningModel.getAllMeshVoxels();
+          
+            meshVoxels = scanningModel.getAllMeshVoxels();
             heatEquation.setScaningVoxels(scanningModel.SnakeScanning());
 
             if (boolPauseCalc)
             {
-                if(heatEquation.CountScanningVoxels<heatEquation.ScaningVoxels.Length)
-                    for (int i = 0; i < 100; i++)
+                
+                if (heatEquation.CountScanningVoxels<heatEquation.ScaningVoxels.Length)
+                    for (int i = 0; i < countStep; i++)
                     {
                         heatEquation.CalculationHeatEquation();
                     }
             }
 
+          
             for (int z = scanningModel.getMinZ(); z <= scanningModel.getMaxZ(); z++)
             {
                 for (int x = scanningModel.getMinX(); x <= scanningModel.getMaxX(); x++)
@@ -171,30 +177,30 @@ namespace VisualVoxelLibrary
 
                         //temperature = CalculationStress.AnalyticalSolution(x+1,y+1,z+1,t);
                         temperature = heatEquation.getTemperature(x, y, z);//x+1,y+1,z+1 так как в массиивк етсь 0 значения                    
-                        colorTemperature.ColorStressVoxel(temperature );//разскоментить когда расчет сделаем
+                        colorTemperature.ColorStressVoxel(temperature);//разскоментить когда расчет сделаем
                         colorDeformationX.ColorDeformationVoxel(heatEquation.getDeformationX(x, y, z));
                         colorDeformationY.ColorDeformationVoxel(heatEquation.getDeformationY(x, y, z));
                         colorDeformationZ.ColorDeformationVoxel(heatEquation.getDeformationZ(x, y, z));
 
                         if (heatEquation.boolMelted(x, y, z))
-                        {   
-                            drawVoxel(gl, colorTemperature, meshVoxels[x, y, z]); 
+                        {
+                            drawVoxel(gl, colorTemperature, meshVoxels[x, y, z]);
                             drawVoxel(gl2,
                                       colorDeformationX,
                                       colorDeformationY,
                                       colorDeformationZ,
-                                      meshVoxels[x, y, z]); 
+                                      meshVoxels[x, y, z]);
 
                         }
-                        else 
-                        { 
-                            drawSkeleton(gl, colorTemperature, meshVoxels[x, y, z]); 
-                            drawSkeleton(gl2, colorTemperature, meshVoxels[x, y, z]); 
+                        else
+                        {
+                            drawSkeleton(gl, colorTemperature, meshVoxels[x, y, z]);
+                            drawSkeleton(gl2, colorTemperature, meshVoxels[x, y, z]);
                         }
                     }
                 }
             }
-            //}
+            
         }
 
         public double getTimeHeatEquation()
@@ -286,7 +292,8 @@ namespace VisualVoxelLibrary
                 //voxelZ[j] = Convert.ToInt32(words[i + 2]);
                 j+=3;
             }
-          //  Console.WriteLine(voxelXYZ);    
+          
+                                                      //  Console.WriteLine(voxelXYZ);    
         }
         public  void ImportXYZ(StreamReader sr)
         {
@@ -296,6 +303,9 @@ namespace VisualVoxelLibrary
             string numbers = sr.ReadToEnd();      
             numbers = numbers.Replace("\r", "").Replace("\n", " ");
             convert_Data_from_FileXYZ(numbers);
+
+
+            scanningModel = new ScanningModel(voxels);//выполняется каждый кадр , нужно  упростить
 
         }
         private void drawPolygon(OpenGL gl, float r, float g, float b, float x1, float y1, float z1,
@@ -529,10 +539,6 @@ namespace VisualVoxelLibrary
                 // glColor3d(0, 1, 0);
                 // glBegin(GL_LINE_STRIP);
                 //верхняя грань
-
-
-
-
 
 
                 gl.Vertex(xc - dsqrt, yc + hfs, zc - dsqrt);

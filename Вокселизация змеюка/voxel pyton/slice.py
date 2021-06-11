@@ -105,7 +105,7 @@ def calculateScaleAndShift(mesh, resolution):
     shift = [-min for min in mins]
     xyscale = float(resolution - 1) / (max(maxs[0] - mins[0], maxs[1] - mins[1]))
     #TODO: Change this to return one scale. If not, verify svx exporting still works.
-    scale = [0.5*xyscale, 0.25*xyscale, 0.25*xyscale]#TODO: поменять на [xyscale, xyscale, xyscale] коэфы 0.5 0.25 0.25
+    scale = [1*xyscale, 1*xyscale, 1*xyscale]#TODO: поменять на [xyscale, xyscale, xyscale] коэфы 0.5 0.25 0.25
     bounding_box = [resolution, resolution, math.ceil((maxs[2] - mins[2]) * xyscale)]
     return (scale, shift, bounding_box)
 
