@@ -150,7 +150,7 @@ namespace VisualVoxelLibrary
         Options options; 
         HeatEquation heatEquation;
         //визуализация трехмерного уравнения теплопроводности
-        public void VisualizationTemperatyre3(OpenGL gl, OpenGL gl2, bool boolPauseCalc,int countStep)
+        public void VisualizationTemperatyre3(OpenGL gl, OpenGL gl2, bool boolPauseCalc,int countSpeedStep)
         {
             double temperature = 0;
           
@@ -161,7 +161,7 @@ namespace VisualVoxelLibrary
             {
                 
                 if (heatEquation.CountScanningVoxels<heatEquation.ScaningVoxels.Length)
-                    for (int i = 0; i < countStep; i++)
+                    for (int i = 0; i < countSpeedStep; i++)
                     {
                         heatEquation.CalculationHeatEquation();
                     }

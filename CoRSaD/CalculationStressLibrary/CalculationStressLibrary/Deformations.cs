@@ -127,7 +127,7 @@ namespace CalculationStressLibrary
         }
         public void CalculationDeformations(double[,,]  T, bool[,,] boolPrinted)
         {
-            Parallel.For(0, K ,
+            Parallel.For(0, K,
             k =>
             //for (int k = 0; k < N; k++)
             {
@@ -147,7 +147,7 @@ namespace CalculationStressLibrary
 
             Parallel.For(1, K - 1,
             k =>
-            // for (int k = 1; k < N - 1; k++)
+            //for (int k = 1; k < N - 1; k++)
             {
                 for (int j = 1; j < J - 1; j++)
                 {
@@ -185,7 +185,7 @@ namespace CalculationStressLibrary
 
 
             Parallel.For(0, K, k =>
-            //for (int k = 0; k < N ; k++)
+            //for (int k = 0; k < N; k++)
             {
                 for (int j = 0; j < J; j++)
                 {
@@ -198,7 +198,7 @@ namespace CalculationStressLibrary
                 }
             });
 
-           // ExporttoFileCSV();
+            // ExporttoFileCSV();
 
         }
         public double getDeformationX(int x, int y, int z)

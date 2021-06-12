@@ -64,28 +64,31 @@ namespace CalculationStressLibrary
             T_fusion_metal = option.get_T_fusion_metal;
             t_laser_voxel = option.get_t_laser_voxel;
             // Инициализация массивов в соответсвии с начальными условиями
-            for (int k = 0; k < K; k++)
-            {
-                for (int j = 0; j < J; j++)
-                {
-                    for (int i = 0; i < I; i++)
-                    {
-                        T_Curent[i, j, k] = T_start;//начальная всех элементов и окружающей среды                                
-                     
-                        K_Values[i, j, k] = D_dust;
 
-                        ////так как у нас вокруг объекта есть пустые площади задаем для них отдельный  коэф теплопроводности (снизу можно сдлеать подложку на которой происходит печать)
-                        if (i == 0 || i == I - 1)
-                            K_Values[i, j, k] = D_air;
-                        if (j == 0 || j == J - 1)
-                            K_Values[i, j, k] = D_air;
-                        if (k == 0 || k == K - 1)
-                            K_Values[i, j, k] = D_air;
+            Parallel.For(0, K,
+             k =>
+             //for (int k = 0; k < K; k++)
+             {
+               for (int j = 0; j < J; j++)
+               {
+                   for (int i = 0; i < I; i++)
+                   {
+                       T_Curent[i, j, k] = T_start;//начальная всех элементов и окружающей среды                                
 
-                        boolPrinted[i, j, k] = false;
-                    }
-                }
-            }
+                       K_Values[i, j, k] = D_dust;
+
+                       ////так как у нас вокруг объекта есть пустые площади задаем для них отдельный  коэф теплопроводности (снизу можно сдлеать подложку на которой происходит печать)
+                       if (i == 0 || i == I - 1)
+                           K_Values[i, j, k] = D_air;
+                       if (j == 0 || j == J - 1)
+                           K_Values[i, j, k] = D_air;
+                       if (k == 0 || k == K - 1)
+                           K_Values[i, j, k] = D_air;
+
+                       boolPrinted[i, j, k] = false;
+                   }
+               }
+           });
 
             deformation = new Deformations(option,dx,I,J,K);
 
@@ -98,7 +101,7 @@ namespace CalculationStressLibrary
             //Указываем источники их начальную температуру и время из водействия 
 
             //Расчет следующего значения температуры в сетке
-            Parallel.For(1,K-1,
+            Parallel.For(1, K - 1,
             k =>
             //for (int k = 1; k < K - 1; k++)
             {
@@ -126,22 +129,14 @@ namespace CalculationStressLibrary
                         }
                     }
                 }
-            
-            });
-            ////перезаписываем значения коэфциентов теплопроводности для всей сетки 
-            //for (int k = 1; k < N - 1; k++)
-            //{
-            //    for (int j = 1; j < N - 1; j++)
-            //    {
-            //        for (int i = 1; i < N - 1; i++)
-            //        {
 
-            //        }
-            //    }
-            //}
+            });
+           
             //перезаписываем граничные условия в next
-            for (int k = 0; k < K; k++)
-            {
+           Parallel.For(0, K,
+           k =>
+           //for (int k = 0; k < K; k++)
+           {
                 for (int j = 0; j < J; j++)
                 {
                     for (int i = 0; i < I; i++)
@@ -154,7 +149,7 @@ namespace CalculationStressLibrary
                             T_Next[i, j, k] = T_start;
                     }
                 }
-            }
+            });
             /////
 
             deformation.CalculationDeformations(T_Next, boolPrinted);
