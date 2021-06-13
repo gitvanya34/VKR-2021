@@ -54,5 +54,7 @@ namespace CalculationStressLibrary
         public double get_T_laser { get => T_laser; set => T_laser = value; }
         public double get_T_fusion_metal { get => T_fusion_metal; set => T_fusion_metal = value; }
         public double get_t_laser_voxel { get => t_laser_voxel; set => t_laser_voxel = value; }
+        public double get_Alpha_0 { get => alpha_0; set => alpha_0 = value; }
+        public double get_E_crit { get => E_crit; set => E_crit = value; }
     }
 }

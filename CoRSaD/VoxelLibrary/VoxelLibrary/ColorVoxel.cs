@@ -53,18 +53,31 @@ namespace VoxelLibrary
 
             double mediana = (Math.Abs(stressMax) - Math.Abs(stressMin))/2;
 
-            if (mediana > n)
-            {
-                blue = k;
-                green = 1 - k;
-                red = 0;
-            }
-            if (mediana < n)
+            //if (mediana > n)
+            //{
+            //    blue = k;
+            //    green = 1 - k;
+            //    red = 0;
+            //}
+            //if (mediana < n)
+            //{
+            //    blue = 0;
+            //    red = k;
+            //    green = 1 - k;
+
+            //}
+            //if (mediana == n)
+            //{
+            //    red = 0;
+            //    green = 1;
+            //    blue = 0;
+            //}
+            if (mediana < Math.Abs(n))
             {
                 blue = 0;
                 red = k;
                 green = 1 - k;
-              
+
             }
             if (mediana == n)
             {
@@ -72,6 +85,7 @@ namespace VoxelLibrary
                 green = 1;
                 blue = 0;
             }
+
             return this;
         }
 

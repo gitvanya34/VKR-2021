@@ -22,10 +22,10 @@ namespace CalculationStressLibrary
         private double[,,] Ez_Next;
 
         private double[,,] alpha_cup;
-        private double alpha_0 = 0.3;//коэфициент теплового расшире
+        private double alpha_0 ;//коэфициент теплового расшире
 
 
-        private double E_crit=-245;//изменить на значение
+        private double E_crit;//изменить на значение
         private int N,I,J,K;
         private double dx;
 
@@ -38,6 +38,9 @@ namespace CalculationStressLibrary
             this.K = K;
             this.dx = dx;
             T_start = options.get_T_start;
+            E_crit = options.get_E_crit;
+            alpha_0 = options.get_Alpha_0;
+
             Ex_Curent = new double[I, J, K];
             Ey_Curent = new double[I, J, K];
             Ez_Curent = new double[I, J, K];
