@@ -357,7 +357,7 @@ namespace CoRSaD
             this.textBox_T_laser.Name = "textBox_T_laser";
             this.textBox_T_laser.Size = new System.Drawing.Size(98, 31);
             this.textBox_T_laser.TabIndex = 4;
-            this.textBox_T_laser.Text = "600";
+            this.textBox_T_laser.Text = "1000000";
             // 
             // textBox_T_start
             // 

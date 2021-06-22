@@ -190,7 +190,6 @@ namespace VisualVoxelLibrary
                                       colorDeformationY,
                                       colorDeformationZ,
                                       meshVoxels[x, y, z]);
-
                         }
                         else
                         {

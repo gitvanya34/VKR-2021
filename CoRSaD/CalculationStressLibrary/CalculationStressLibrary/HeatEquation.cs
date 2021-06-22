@@ -18,7 +18,7 @@ namespace CalculationStressLibrary
                               dz = 1;
 
         private double t = 0,
-                       dt = (dx * dx) / (2) * T_start,//tay
+                       dt = (dx * dx) / (2) * 1000,//tay
                        t_laser_voxel = 0.02,//время обработки одного вокселя лазером
                        t_curent_laser_voxel = 0;//время для таймера 
 
@@ -57,12 +57,17 @@ namespace CalculationStressLibrary
             K_Values = new double[I, J, K];
             boolPrinted = new bool[I,J,K];
             //вводим воксели по порядку сканировнаия для источника 
+            D_dust = option.get_D_dust;
             D_air = option.get_D_air;
             D_metal = option.get_D_metal;
             T_start = option.get_T_start;//температур окружающей среды
             T_laser = option.get_T_laser;
             T_fusion_metal = option.get_T_fusion_metal;
             t_laser_voxel = option.get_t_laser_voxel;
+
+
+            dt = (dx * dx) / (2) * T_start;
+                    
             // Инициализация массивов в соответсвии с начальными условиями
 
             Parallel.For(0, K,
@@ -73,17 +78,28 @@ namespace CalculationStressLibrary
                {
                    for (int i = 0; i < I; i++)
                    {
-                       T_Curent[i, j, k] = T_start;//начальная всех элементов и окружающей среды                                
+                       T_Curent[i, j, k] = T_start;//начальная всех элементов и окружающей среды
+                                                   
+                         K_Values[i, j, k] = D_air;
 
-                       K_Values[i, j, k] = D_dust;
+                         //if (k == 0)
+                         //{ K_Values[i, j, k] = D_metal; }//подложка
+                         //if (k == 1)
+                         //{ K_Values[i, j, k] = D_dust; }//первый слой 
 
-                       ////так как у нас вокруг объекта есть пустые площади задаем для них отдельный  коэф теплопроводности (снизу можно сдлеать подложку на которой происходит печать)
-                       if (i == 0 || i == I - 1)
-                           K_Values[i, j, k] = D_air;
+                         ////так как у нас вокруг объекта есть пустые площади задаем для них отдельный  коэф теплопроводности (снизу можно сдлеать подложку на которой происходит печать)
+                       //  if (i == 0 || i == I - 1)
+                       //    K_Values[i, j, k] = D_air;
+                       //if (j == 0 || j == J - 1)
+                       //    K_Values[i, j, k] = D_air;
+                       //if (k == 0 || k == K - 1)
+                       //    K_Values[i, j, k] = D_air;
+                         if (i == 0 || i == I - 1)
+                           K_Values[i, j, k] = D_dust;
                        if (j == 0 || j == J - 1)
-                           K_Values[i, j, k] = D_air;
+                           K_Values[i, j, k] = D_dust;
                        if (k == 0 || k == K - 1)
-                           K_Values[i, j, k] = D_air;
+                           K_Values[i, j, k] = D_dust;
 
                        boolPrinted[i, j, k] = false;
                    }
@@ -98,7 +114,24 @@ namespace CalculationStressLibrary
         }
 
         public void CalculationHeatEquation(){
-            //Указываем источники их начальную температуру и время из водействия 
+            //Указываем нанесение слоя на рабочую поверхность
+            Parallel.For(1, K - 1,
+           k =>
+            //for (int k = 1; k < K - 1; k++)
+            {
+                for (int j = 1; j < J - 1; j++)
+                {
+                    for (int i = 1; i < I - 1; i++)
+                    {
+                        if (countScanningVoxels < scaningVoxels.Length)
+                            if (scaningVoxels[countScanningVoxels][2] +1  == k && K_Values[i, j, k] == D_air)
+                            {
+                                K_Values[i, j, k] = D_dust;
+                            }
+
+                    }
+                }
+            });
 
             //Расчет следующего значения температуры в сетке
             Parallel.For(1, K - 1,
@@ -119,10 +152,10 @@ namespace CalculationStressLibrary
                                                   (K_half_plus_k(i, j, k) * (T_Curent[i, j, k + 1] - T_Curent[i, j, k])
                                                  - K_half_minus_k(i, j, k) * (T_Curent[i, j, k] - T_Curent[i, j, k - 1]))
                                                  )
-                                                 + Q_source(t, i, j, k);
+                                                 + (dt*Q_source(t, i, j, k));
 
                         //изменение агрегатного состояния (порошок превратился в металл)
-                        if (T_Next[i, j, k] > T_fusion_titan)
+                        if (T_Next[i, j, k] > T_fusion_metal && scaningVoxels[countScanningVoxels][2] + 1 >= k)
                         {
                             K_Values[i, j, k] = D_metal;
                             boolPrinted[i, j, k] = true;
@@ -196,6 +229,7 @@ namespace CalculationStressLibrary
                 if(scaningVoxels[countScanningVoxels][0]+1==i)
                     if(scaningVoxels[countScanningVoxels][1]+1==j)
                         if(scaningVoxels[countScanningVoxels][2]+1==k)
+                            
                             if (t-t_curent_laser_voxel < t_laser_voxel)
                             {                        
                                 q = T_laser;
