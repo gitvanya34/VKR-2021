@@ -380,7 +380,7 @@ namespace VisualVoxelLibrary
         {
             if (voxel.getBoolScanned())
             {
-                drawSkeleton(gl,color,voxel);
+             //   drawSkeleton(gl,color,voxel);
 
                 float sizeVoxel = 1;
                 float hfs = sizeVoxel / 2;

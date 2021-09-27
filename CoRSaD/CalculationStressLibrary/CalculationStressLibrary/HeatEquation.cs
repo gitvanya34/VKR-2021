@@ -18,7 +18,7 @@ namespace CalculationStressLibrary
                               dz = 1;
 
         private double t = 0,
-                       dt = (dx * dx) / (2) * 1000,//tay
+                       dt = 0,//tay
                        t_laser_voxel = 0.02,//время обработки одного вокселя лазером
                        t_curent_laser_voxel = 0;//время для таймера 
 
@@ -152,7 +152,7 @@ namespace CalculationStressLibrary
                                                   (K_half_plus_k(i, j, k) * (T_Curent[i, j, k + 1] - T_Curent[i, j, k])
                                                  - K_half_minus_k(i, j, k) * (T_Curent[i, j, k] - T_Curent[i, j, k - 1]))
                                                  )
-                                                 + (dt*Q_source(t, i, j, k));
+                                                 + (Q_source(t, i, j, k));
 
                         //изменение агрегатного состояния (порошок превратился в металл)
                         if (T_Next[i, j, k] > T_fusion_metal && scaningVoxels[countScanningVoxels][2] + 1 >= k)
@@ -189,17 +189,20 @@ namespace CalculationStressLibrary
 
 
             ////
-            //for (int k = 0; k < N ; k++)
-            //{
-            //    for (int j = 0; j < N ; j++)
-            //    {
-            //        for (int i = 0; i < N; i++)
-            //        {
-                        T_Curent/*[i, j, k]*/ = T_Next/*[i, j, k]*/;
-            //        }
-            //    }
-            //}
-           
+            for (int k = 1; k < K-1; k++)
+            {
+                for (int j = 1; j < J-1; j++)
+                {
+                    for (int i = 1; i < I-1; i++)
+                    {
+                        T_Curent[i, j, k] = T_Next[i, j, k];
+                    }
+                }
+            }
+            //  Array.Copy(T_Curent, T_Next, T_Curent.Length);
+
+
+
 
             //измененение шага по времени для устойчивости
             dt = (dx * dx) / (2 * Tmax()) ;//tay
@@ -219,28 +222,28 @@ namespace CalculationStressLibrary
             return max;
         }
         //метод определения источника 
+
+        bool flag = false;
         public double Q_source(double t,int i, int j, int k)
-        {
+        {     
             ////TODO: Проверку является ли воксель  источчником на данном этапе  
             //согласовать период прорисовки(сканирование) одного вокселя 
             //установить порядок сканирования вокселей
             double q = 0;
-            if(countScanningVoxels< scaningVoxels.Length)
-                if(scaningVoxels[countScanningVoxels][0]+1==i)
-                    if(scaningVoxels[countScanningVoxels][1]+1==j)
-                        if(scaningVoxels[countScanningVoxels][2]+1==k)
-                            
-                            if (t-t_curent_laser_voxel < t_laser_voxel)
-                            {                        
-                                q = T_laser;
-                            }
-                            else 
-                            {
-                                t_curent_laser_voxel = t;
-                                countScanningVoxels += 1;
-                            }
-           
-            return q;
+                if (countScanningVoxels < scaningVoxels.Length)
+                    if (scaningVoxels[countScanningVoxels][0] + 1 == i)
+                        if (scaningVoxels[countScanningVoxels][1] + 1 == j)
+                            if (scaningVoxels[countScanningVoxels][2] + 1 == k)
+                                if (t - t_curent_laser_voxel < t_laser_voxel)
+                                {
+                                    q = dt * T_laser;
+                                }
+                                else
+                                {
+                                    t_curent_laser_voxel = t;
+                                    countScanningVoxels += 1;
+                                }
+            return  q;
         }
 
         public double K_half_plus_i( int i, int j, int k)
