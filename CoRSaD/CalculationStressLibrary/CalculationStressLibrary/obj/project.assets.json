@@ -67,11 +67,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\StudentData\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj",
+      "projectUniqueName": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj",
       "projectName": "CalculationStressLibrary",
-      "projectPath": "D:\\StudentData\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj",
+      "projectPath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj",
       "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-      "outputPath": "D:\\StudentData\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\obj\\",
+      "outputPath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -88,8 +88,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\StudentData\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj": {
-              "projectPath": "D:\\StudentData\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj"
+            "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj": {
+              "projectPath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj"
             }
           }
         }

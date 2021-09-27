@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\StudentData\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj": {}
+    "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj": {}
   },
   "projects": {
-    "D:\\StudentData\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj": {
+    "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\StudentData\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj",
+        "projectUniqueName": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj",
         "projectName": "VoxelLibrary",
-        "projectPath": "D:\\StudentData\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj",
+        "projectPath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\VoxelLibrary.csproj",
         "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-        "outputPath": "D:\\StudentData\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\obj\\",
+        "outputPath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\VoxelLibrary\\VoxelLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",

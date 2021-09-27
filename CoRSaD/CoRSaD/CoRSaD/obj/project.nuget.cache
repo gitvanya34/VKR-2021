@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rOdGaQczMGNJhQFuSipDZHeXcSZkxfmIlEeupv/qHzcfLXcjWbCAJTzokmWSVI5SjebsQBcZP0h34LbMs5LWXQ==",
+  "dgSpecHash": "QoLojn6p4SQDLTbrRJ+R/VbdPiUrJIbAYgfL7MXv6OwO/lqpNI0b7d3aaQ9SB1iBHRZY9KfkghDig+vlu4/Zxg==",
   "success": true,
-  "projectFilePath": "D:\\StudentData\\VKR-2021\\CoRSaD\\CoRSaD\\CoRSaD\\CoRSaD.csproj",
+  "projectFilePath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\CoRSaD\\CoRSaD\\CoRSaD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

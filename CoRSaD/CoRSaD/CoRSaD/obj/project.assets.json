@@ -476,11 +476,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\StudentData\\VKR-2021\\CoRSaD\\CoRSaD\\CoRSaD\\CoRSaD.csproj",
+      "projectUniqueName": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\CoRSaD\\CoRSaD\\CoRSaD.csproj",
       "projectName": "CoRSaD",
-      "projectPath": "D:\\StudentData\\VKR-2021\\CoRSaD\\CoRSaD\\CoRSaD\\CoRSaD.csproj",
+      "projectPath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\CoRSaD\\CoRSaD\\CoRSaD.csproj",
       "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-      "outputPath": "D:\\StudentData\\VKR-2021\\CoRSaD\\CoRSaD\\CoRSaD\\obj\\",
+      "outputPath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\CoRSaD\\CoRSaD\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -497,11 +497,11 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "D:\\StudentData\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj": {
-              "projectPath": "D:\\StudentData\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj"
+            "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj": {
+              "projectPath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\CalculationStressLibrary\\CalculationStressLibrary\\CalculationStressLibrary.csproj"
             },
-            "D:\\StudentData\\VKR-2021\\CoRSaD\\VisualVoxelLibrary\\VisualVoxelLibrary\\VisualVoxelLibrary.csproj": {
-              "projectPath": "D:\\StudentData\\VKR-2021\\CoRSaD\\VisualVoxelLibrary\\VisualVoxelLibrary\\VisualVoxelLibrary.csproj"
+            "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\VisualVoxelLibrary\\VisualVoxelLibrary\\VisualVoxelLibrary.csproj": {
+              "projectPath": "D:\\StudentData\\old\\VKR-2021\\CoRSaD\\VisualVoxelLibrary\\VisualVoxelLibrary\\VisualVoxelLibrary.csproj"
             }
           }
         }
